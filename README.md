@@ -1,3 +1,3 @@
 # elevenarms.github.io
 
-Is this going to be rendered? 
+Personal blog, served by GitHub Pages: https://elevenarms.github.io
