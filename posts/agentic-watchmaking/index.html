@@ -12,131 +12,27 @@
 <meta property="og:image" content="https://elevenarms.github.io/posts/agentic-watchmaking/img/hero-exploded-running.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://elevenarms.github.io/posts/agentic-watchmaking/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
-<style>
-/* layout: a single reading column (~68ch) with full-bleed tables and code; a proof-goal panel as the hero */
-:root {
-  --paper: #f5f7f8;
-  --ink: #18202b;
-  --muted: #5b6676;
-  --rule: #d9dee5;
-  --accent: #1f6f5c;
-  --goal: #e6f0ec;
-  --code-bg: #eceff3;
-  --warn: #9a5b12;
-  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #12161c; --ink: #e6eaef; --muted: #9aa6b5; --rule: #2a323d;
-    --accent: #5fc2a6; --goal: #16231f; --code-bg: #1b2129; --warn: #e0a65a;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #12161c; --ink: #e6eaef; --muted: #9aa6b5; --rule: #2a323d;
-  --accent: #5fc2a6; --goal: #16231f; --code-bg: #1b2129; --warn: #e0a65a;
-  color-scheme: dark;
-}
-html { -webkit-text-size-adjust: 100%; }
-body {
-  background: var(--paper); color: var(--ink);
-  font-family: var(--body); font-size: 1.1rem; line-height: 1.68;
-  padding-inline: 20px; padding-block: 0 4rem;
-}
-.col { max-width: 68ch; margin-inline: auto; }
-.wide { max-width: 88ch; margin-inline: auto; }
-header.hero { padding-block: 4rem 2rem; }
-.kicker {
-  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--accent);
-}
-h1 {
-  font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.6rem);
-  line-height: 1.02; letter-spacing: -0.02em; margin: 0.4rem 0 1rem; text-wrap: balance;
-}
-.deck { font-size: 1.28rem; line-height: 1.5; color: var(--muted); margin: 0 0 1.5rem; text-wrap: balance; }
-.byline { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
-.goal {
-  font-family: var(--mono); font-size: 0.92rem; line-height: 1.6;
-  background: var(--goal); border-left: 3px solid var(--accent);
-  padding: 1rem 1.2rem; margin-block: 2rem 0; overflow-x: auto; white-space: pre;
-}
-.goal .t { color: var(--accent); font-weight: 600; }
-.goal .c { color: var(--muted); }
-h2 {
-  font-family: var(--display); font-weight: 700; font-size: 1.85rem; line-height: 1.15;
-  margin: 3.2rem 0 0.8rem; text-wrap: balance; letter-spacing: -0.01em;
-}
-h3 { font-family: var(--display); font-weight: 700; font-size: 1.25rem; margin: 2rem 0 0.4rem; }
-.stage { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.06em; margin-right: 0.5em; }
-p { margin: 0 0 1.1rem; }
-a { color: var(--accent); text-underline-offset: 0.18em; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-strong { font-weight: 600; }
-code { font-family: var(--mono); font-size: 0.86em; background: var(--code-bg); padding: 0.08em 0.3em; border-radius: 3px; }
-pre.code {
-  font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; background: var(--code-bg);
-  padding: 1rem 1.2rem; overflow-x: auto; border-radius: 4px; margin: 0 0 1.4rem;
-}
-pre.code code { background: none; padding: 0; font-size: 1em; }
-.lbl { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.3rem; }
-blockquote {
-  margin: 1.6rem 0; padding: 0 0 0 1.2rem; border-left: 3px solid var(--rule);
-  font-style: italic; color: var(--muted);
-}
-.tablewrap { overflow-x: auto; margin: 0.4rem 0 1.6rem; }
-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; min-width: 34rem; }
-th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
-th { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.big { font-family: var(--display); font-weight: 800; color: var(--accent); }
-.note { font-size: 0.95rem; color: var(--muted); }
-hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
-ul { padding-left: 1.2rem; margin: 0 0 1.1rem; }
-li { margin-bottom: 0.4rem; }
-.mermaid { background: transparent; margin: 1rem 0 1.6rem; text-align: center; }
-footer { margin-top: 3rem; font-size: 0.95rem; color: var(--muted); }
-@media (max-width: 520px) {
-  body { font-size: 1.02rem; }
-  .goal { font-size: 0.8rem; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  a { transition: color 0.15s; }
-}
-</style>
-<style>
-body { margin: 0; }
-.sitenav { padding-block: 1.4rem 0; font-family: var(--mono); font-size: 0.82rem; }
-.sitenav a { color: var(--muted); text-decoration: none; }
-.sitenav a:hover, .sitenav a:focus-visible { color: var(--accent); }
-header.hero { padding-block: 2.2rem 2rem; }
-</style>
-<style>
-/* figures: screenshots of the build, full column or wider */
-figure { margin: 2rem auto; }
-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--code-bg); }
-figcaption { font-size: 0.92rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.5; }
-figure.wide { max-width: 104ch; padding-inline: 0; }
-.hero-fig { margin-top: 0; }
-.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 1.4rem 0 1.8rem; }
-.gallery figure { margin: 0; }
-.gallery figcaption { font-size: 0.86rem; }
-figure.phone { max-width: 300px; }
-@media (max-width: 620px) { .gallery { grid-template-columns: 1fr; } }
-</style>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/assets/cl.css">
+<script src="/assets/cl.js" defer></script>
 </head>
 <body>
-<nav class="col sitenav"><a href="/">← elevenarms</a></nav>
+<nav class="topbar" aria-label="Breadcrumb">
+  <a class="logo" href="/" aria-label="elevenarms home">ea</a>
+  <a href="/">elevenarms</a> <span class="crumb">&gt;</span> <a href="/#posts">posts</a> <span class="crumb">&gt;</span> <span class="here">agentic mechanical design</span>
+  <span class="right"><a href="https://github.com/elevenarms/6497D">source</a> <a href="https://github.com/elevenarms">github</a></span>
+</nav>
 <header class="hero col">
   <div class="kicker">Field notes · agentic mechanical design · October 2026</div>
-  <h1>An Agent at the Watchmaker’s Bench</h1>
+  <h1>An Agent at the Watchmaker’s Bench <span class="price">– $0 (Swiss bench)</span></h1>
   <p class="deck">Two PDFs from ETA, a CAD folder from the internet and one sentence of instructions. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser, wound, and set ticking. What that says about where agentic mechanical design is right now.</p>
   <div class="byline">A first-person build log · with Claude Opus 5.5 as pair</div>
+  <p class="postinfo">posted: <time datetime="2026-10-13" data-ago>2026-10-13</time></p>
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/elevenarms/6497D">reply</a>
+    <button type="button" class="btn" data-fav aria-pressed="false">☆ favorite</button>
+    <button type="button" class="btn" data-share>share</button>
+  </div>
 </header>
 
 <figure class="wide hero-fig">
@@ -299,6 +195,7 @@ flowchart LR
 
 <footer class="col">
   <p>Play it at <a href="https://elevenarms.github.io/6497D/">elevenarms.github.io/6497D</a>. Code and credits: <a href="https://github.com/elevenarms/6497D">github.com/elevenarms/6497D</a> (MIT for the code). Movement model: <em>ETA 6497-1 complete watch movement</em>, GrabCAD community. Technical data: ETA SA, CT 6497-2 and IH 6497-2. Music: Mozart, K.&nbsp;465, Musopen String Quartet (public domain). Built with <a href="https://threejs.org">three.js</a> and <a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a>. Not affiliated with ETA SA or the estate of George Daniels.</p>
+  <p class="postingid">post id: agentic-watchmaking · posted: 2026-10-13 · <a href="/">back to all posts</a></p>
 </footer>
 </main>
 
