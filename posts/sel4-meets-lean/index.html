@@ -11,27 +11,17 @@
 <meta property="og:url" content="https://elevenarms.github.io/posts/sel4-meets-lean/">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://elevenarms.github.io/posts/sel4-meets-lean/">
-<meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="/assets/cl.css">
-<script src="/assets/cl.js" defer></script>
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<nav class="topbar" aria-label="Breadcrumb">
-  <a class="logo" href="/" aria-label="elevenarms home">ea</a>
-  <a href="/">elevenarms</a> <span class="crumb">&gt;</span> <a href="/#posts">posts</a> <span class="crumb">&gt;</span> <span class="here">formal verification</span>
-  <span class="right"><a href="https://github.com/elevenarms/sel4-lean">source</a> <a href="https://github.com/elevenarms">github</a></span>
-</nav>
+<nav class="back"><a href="/">← elevenarms</a></nav>
 <header class="hero col">
   <div class="kicker">Field notes · formal verification · October 2026</div>
-  <h1>seL4, Meet Lean <span class="price">– $0 (Isabelle → Lean)</span></h1>
+  <h1>seL4, Meet Lean</h1>
   <p class="deck">Can the mountain of human-checked proof behind the world's most verified kernel bootstrap a version in Lean? I spent 27 hours finding out with Claude Opus 5.5. What follows is what we found, and what it would cost to finish.</p>
   <div class="byline">A first-person investigation · with Claude Opus 5.5 as pair</div>
-  <p class="postinfo">posted: <time datetime="2026-10-08" data-ago>2026-10-08</time></p>
-  <div class="actions">
-    <a class="btn primary" href="https://github.com/elevenarms/sel4-lean">reply</a>
-    <button type="button" class="btn" data-fav aria-pressed="false">☆ favorite</button>
-    <button type="button" class="btn" data-share>share</button>
-  </div>
+  <p class="postinfo">posted: <time datetime="2026-10-08">2026-10-08</time></p>
   <div class="goal" role="img" aria-label="Proof goal: does the seL4 C kernel refine its abstract specification, stated in Isabelle and in Lean"><span class="c">-- Isabelle/HOL, 2009 onward. Proved.</span>
 <span class="t">⊢</span> C kernel ⊑ executable spec ⊑ abstract spec
 <span class="c">-- Lean 4, this week. Open.</span>
@@ -196,13 +186,12 @@ flowchart TB
 
 <footer class="col">
   <p>Built on <a href="https://sel4.systems">seL4</a> and <a href="https://github.com/seL4/l4v">l4v</a> (Isabelle/HOL), and on <a href="https://lean-lang.org">Lean 4</a>. All numbers above come from the project's own logs and gates. Code, notes and gate outputs: <a href="https://github.com/elevenarms/sel4-lean">github.com/elevenarms/sel4-lean</a> (BSD-2-Clause, with the l4v-derived parts under GPL-2.0-only).</p>
-  <p class="postingid">post id: sel4-meets-lean · posted: 2026-10-08 · <a href="/">back to all posts</a></p>
+  <p><a href="/">← all posts</a></p>
 </footer>
 </main>
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
-const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral", securityLevel: "strict" });
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
 </script>
 </body>
 </html>

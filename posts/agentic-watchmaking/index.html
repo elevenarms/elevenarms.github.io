@@ -12,27 +12,17 @@
 <meta property="og:image" content="https://elevenarms.github.io/posts/agentic-watchmaking/img/hero-exploded-running.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://elevenarms.github.io/posts/agentic-watchmaking/">
-<meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="/assets/cl.css">
-<script src="/assets/cl.js" defer></script>
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<nav class="topbar" aria-label="Breadcrumb">
-  <a class="logo" href="/" aria-label="elevenarms home">ea</a>
-  <a href="/">elevenarms</a> <span class="crumb">&gt;</span> <a href="/#posts">posts</a> <span class="crumb">&gt;</span> <span class="here">agentic mechanical design</span>
-  <span class="right"><a href="https://github.com/elevenarms/6497D">source</a> <a href="https://github.com/elevenarms">github</a></span>
-</nav>
+<nav class="back"><a href="/">← elevenarms</a></nav>
 <header class="hero col">
   <div class="kicker">Field notes · agentic mechanical design · October 2026</div>
-  <h1>An Agent at the Watchmaker’s Bench <span class="price">– $0 (Swiss bench)</span></h1>
+  <h1>An Agent at the Watchmaker’s Bench</h1>
   <p class="deck">Two PDFs from ETA, a CAD folder from the internet and one sentence of instructions. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser, wound, and set ticking. What that says about where agentic mechanical design is right now.</p>
   <div class="byline">A first-person build log · with Claude Opus 5.5 as pair</div>
-  <p class="postinfo">posted: <time datetime="2026-10-13" data-ago>2026-10-13</time></p>
-  <div class="actions">
-    <a class="btn primary" href="https://github.com/elevenarms/6497D">reply</a>
-    <button type="button" class="btn" data-fav aria-pressed="false">☆ favorite</button>
-    <button type="button" class="btn" data-share>share</button>
-  </div>
+  <p class="postinfo">posted: <time datetime="2026-10-13">2026-10-13</time></p>
 </header>
 
 <figure class="wide hero-fig">
@@ -195,14 +185,13 @@ flowchart LR
 
 <footer class="col">
   <p>Play it at <a href="https://elevenarms.github.io/6497D/">elevenarms.github.io/6497D</a>. Code and credits: <a href="https://github.com/elevenarms/6497D">github.com/elevenarms/6497D</a> (MIT for the code). Movement model: <em>ETA 6497-1 complete watch movement</em>, GrabCAD community. Technical data: ETA SA, CT 6497-2 and IH 6497-2. Music: Mozart, K.&nbsp;465, Musopen String Quartet (public domain). Built with <a href="https://threejs.org">three.js</a> and <a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a>. Not affiliated with ETA SA or the estate of George Daniels.</p>
-  <p class="postingid">post id: agentic-watchmaking · posted: 2026-10-13 · <a href="/">back to all posts</a></p>
+  <p><a href="/">← all posts</a></p>
 </footer>
 </main>
 
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
-const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral", securityLevel: "strict" });
+mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
 </script>
 </body>
 </html>

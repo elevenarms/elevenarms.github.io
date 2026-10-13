@@ -3,69 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <title>elevenarms</title>
 <meta name="description" content="Writing on systems, formal verification and building with AI.">
-<link rel="stylesheet" href="/assets/cl.css">
-<script src="/assets/cl.js" defer></script>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<nav class="topbar" aria-label="Breadcrumb">
-  <a class="logo" href="/" aria-label="elevenarms home">ea</a>
-  <span class="here">elevenarms</span> <span class="crumb">&gt;</span> <span>posts</span>
-  <span class="right"><a href="https://github.com/elevenarms">github</a></span>
-</nav>
+<header>
+  <h1>elevenarms</h1>
+  <p>Writing on systems, formal verification and building with AI.</p>
+</header>
 
-<div class="board">
-  <aside>
-    <p class="masthead">elevenarms</p>
-    <p class="about">Writing on systems, formal verification and building with AI.</p>
-    <div class="box">
-      <div class="boxhead">projects</div>
-      <ul>
-        <li><a href="https://elevenarms.github.io/6497D/">6497D</a> <span class="note">(play)</span></li>
-        <li><a href="https://github.com/elevenarms/6497D">6497D source</a></li>
-        <li><a href="https://github.com/elevenarms/sel4-lean">sel4-lean</a></li>
-      </ul>
-    </div>
-    <div class="box">
-      <div class="boxhead">elsewhere</div>
-      <ul>
-        <li><a href="https://github.com/elevenarms">github.com/elevenarms</a></li>
-      </ul>
-    </div>
-  </aside>
+<main>
+  <ul class="index">
+    <li>
+      <time datetime="2026-10-13">2026-10-13</time>
+      <a href="/posts/agentic-watchmaking/">An Agent at the Watchmaker’s Bench</a>
+      <p>Two ETA PDFs, a CAD folder and one sentence. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser and set ticking.</p>
+    </li>
+    <li>
+      <time datetime="2026-10-08">2026-10-08</time>
+      <a href="/posts/sel4-meets-lean/">seL4, Meet Lean</a>
+      <p>Can the mountain of human-checked proof behind the world's most verified kernel bootstrap a version in Lean? 27 hours with Claude Opus 5.5: what worked, what checking against l4v's own Isabelle caught, and what finishing would cost.</p>
+    </li>
+  </ul>
+</main>
 
-  <main id="posts">
-    <div class="box">
-      <h2>posts</h2>
-      <div class="search">
-        <label for="q" class="note">search posts</label>
-        <input id="q" type="search" data-filter placeholder="e.g. lean, watch" autocomplete="off">
-      </div>
-      <ol class="listings" aria-live="polite">
-        <li class="listing">
-          <time datetime="2026-10-13">Oct 13</time>
-          <div>
-            <a class="title" href="/posts/agentic-watchmaking/">An Agent at the Watchmaker’s Bench</a>
-            <span class="hood">(agentic mechanical design)</span> <span class="tagpic">pic</span>
-          </div>
-          <p class="summary">Two ETA PDFs, a CAD folder and one sentence. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser and set ticking.</p>
-        </li>
-        <li class="listing">
-          <time datetime="2026-10-08">Oct 8</time>
-          <div>
-            <a class="title" href="/posts/sel4-meets-lean/">seL4, Meet Lean</a>
-            <span class="hood">(formal verification)</span>
-          </div>
-          <p class="summary">Can the mountain of human-checked proof behind the world's most verified kernel bootstrap a version in Lean? 27 hours with Claude Opus 5.5: what worked, what checking against l4v's own Isabelle caught, and what finishing would cost.</p>
-        </li>
-      </ol>
-      <p class="note empty" data-empty hidden>no posts match.</p>
-    </div>
-  </main>
-</div>
-
-<footer class="boardfoot">© 2026 elevenarms · <a href="https://github.com/elevenarms">github</a></footer>
+<footer>
+  Projects: <a href="https://elevenarms.github.io/6497D/">6497D</a> · <a href="https://github.com/elevenarms/sel4-lean">sel4-lean</a> · <a href="https://github.com/elevenarms">github.com/elevenarms</a>
+</footer>
 </body>
 </html>
