@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An Agent at the Watchmaker’s Bench · elevenarms</title>
+<meta name="description" content="Two ETA PDFs, a CAD folder and one sentence. An hour and a quarter later, a Swiss watch movement could be assembled screw by screw in a browser and set ticking. Field notes on agentic mechanical design.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Agent at the Watchmaker’s Bench">
+<meta property="og:description" content="Two ETA PDFs, a CAD folder and one sentence. An hour and a quarter later, a Swiss watch movement could be assembled screw by screw in a browser and set ticking. Field notes on agentic mechanical design.">
+<meta property="og:url" content="https://elevenarms.github.io/posts/agentic-watchmaking/">
+<meta property="og:image" content="https://elevenarms.github.io/posts/agentic-watchmaking/img/hero-exploded-running.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://elevenarms.github.io/posts/agentic-watchmaking/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* layout: a single reading column (~68ch) with full-bleed tables and code; a proof-goal panel as the hero */
+:root {
+  --paper: #f5f7f8;
+  --ink: #18202b;
+  --muted: #5b6676;
+  --rule: #d9dee5;
+  --accent: #1f6f5c;
+  --goal: #e6f0ec;
+  --code-bg: #eceff3;
+  --warn: #9a5b12;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12161c; --ink: #e6eaef; --muted: #9aa6b5; --rule: #2a323d;
+    --accent: #5fc2a6; --goal: #16231f; --code-bg: #1b2129; --warn: #e0a65a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12161c; --ink: #e6eaef; --muted: #9aa6b5; --rule: #2a323d;
+  --accent: #5fc2a6; --goal: #16231f; --code-bg: #1b2129; --warn: #e0a65a;
+  color-scheme: dark;
+}
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 1.1rem; line-height: 1.68;
+  padding-inline: 20px; padding-block: 0 4rem;
+}
+.col { max-width: 68ch; margin-inline: auto; }
+.wide { max-width: 88ch; margin-inline: auto; }
+header.hero { padding-block: 4rem 2rem; }
+.kicker {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent);
+}
+h1 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.6rem);
+  line-height: 1.02; letter-spacing: -0.02em; margin: 0.4rem 0 1rem; text-wrap: balance;
+}
+.deck { font-size: 1.28rem; line-height: 1.5; color: var(--muted); margin: 0 0 1.5rem; text-wrap: balance; }
+.byline { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.goal {
+  font-family: var(--mono); font-size: 0.92rem; line-height: 1.6;
+  background: var(--goal); border-left: 3px solid var(--accent);
+  padding: 1rem 1.2rem; margin-block: 2rem 0; overflow-x: auto; white-space: pre;
+}
+.goal .t { color: var(--accent); font-weight: 600; }
+.goal .c { color: var(--muted); }
+h2 {
+  font-family: var(--display); font-weight: 700; font-size: 1.85rem; line-height: 1.15;
+  margin: 3.2rem 0 0.8rem; text-wrap: balance; letter-spacing: -0.01em;
+}
+h3 { font-family: var(--display); font-weight: 700; font-size: 1.25rem; margin: 2rem 0 0.4rem; }
+.stage { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.06em; margin-right: 0.5em; }
+p { margin: 0 0 1.1rem; }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+strong { font-weight: 600; }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--code-bg); padding: 0.08em 0.3em; border-radius: 3px; }
+pre.code {
+  font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; background: var(--code-bg);
+  padding: 1rem 1.2rem; overflow-x: auto; border-radius: 4px; margin: 0 0 1.4rem;
+}
+pre.code code { background: none; padding: 0; font-size: 1em; }
+.lbl { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.3rem; }
+blockquote {
+  margin: 1.6rem 0; padding: 0 0 0 1.2rem; border-left: 3px solid var(--rule);
+  font-style: italic; color: var(--muted);
+}
+.tablewrap { overflow-x: auto; margin: 0.4rem 0 1.6rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; min-width: 34rem; }
+th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.big { font-family: var(--display); font-weight: 800; color: var(--accent); }
+.note { font-size: 0.95rem; color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+ul { padding-left: 1.2rem; margin: 0 0 1.1rem; }
+li { margin-bottom: 0.4rem; }
+.mermaid { background: transparent; margin: 1rem 0 1.6rem; text-align: center; }
+footer { margin-top: 3rem; font-size: 0.95rem; color: var(--muted); }
+@media (max-width: 520px) {
+  body { font-size: 1.02rem; }
+  .goal { font-size: 0.8rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: color 0.15s; }
+}
+</style>
+<style>
+body { margin: 0; }
+.sitenav { padding-block: 1.4rem 0; font-family: var(--mono); font-size: 0.82rem; }
+.sitenav a { color: var(--muted); text-decoration: none; }
+.sitenav a:hover, .sitenav a:focus-visible { color: var(--accent); }
+header.hero { padding-block: 2.2rem 2rem; }
+</style>
+<style>
+/* figures: screenshots of the build, full column or wider */
+figure { margin: 2rem auto; }
+figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--code-bg); }
+figcaption { font-size: 0.92rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.5; }
+figure.wide { max-width: 104ch; padding-inline: 0; }
+.hero-fig { margin-top: 0; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 1.4rem 0 1.8rem; }
+.gallery figure { margin: 0; }
+.gallery figcaption { font-size: 0.86rem; }
+figure.phone { max-width: 300px; }
+@media (max-width: 620px) { .gallery { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="col sitenav"><a href="/">← elevenarms</a></nav>
+<header class="hero col">
+  <div class="kicker">Field notes · agentic mechanical design · October 2026</div>
+  <h1>An Agent at the Watchmaker’s Bench</h1>
+  <p class="deck">Two PDFs from ETA, a CAD folder from the internet and one sentence of instructions. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser, wound, and set ticking. What that says about where agentic mechanical design is right now.</p>
+  <div class="byline">A first-person build log · with Claude Opus 5.5 as pair</div>
+</header>
+
+<figure class="wide hero-fig">
+  <img src="img/hero-exploded-running.jpg" width="1600" height="1004" alt="A two-page book spread. The left page lists the components of the ETA 6497 in order of assembly. The right page shows the movement in an exploded side view: blued screws float above silver bridges, the gilt train and balance sit under them, the brass main plate is in the middle, and the motion work and blued hands hang below. A small engraved dial shows the time.">
+  <figcaption>The finished thing: the ETA 6497 running in exploded view, drawn as an engraved plate from a classic watchmaking book. Try it at <a href="https://elevenarms.github.io/6497D/">elevenarms.github.io/6497D</a>.</figcaption>
+</figure>
+
+<main>
+<section class="col">
+<h2>A bench, two PDFs and a folder of CAD</h2>
+<p>The ETA 6497 is a big, honest, hand-wound movement. It was designed for pocket watches, it is 36.6&nbsp;mm across, it has 17 jewels, and it beats 21,600 times an hour. Watchmaking students take it apart and put it back together because everything is large enough to see. I had three things on my disk:</p>
+<ul>
+  <li>ETA’s <em>Technical Communication</em> for the 6497-2: 24 pages of exploded drawings, a parts list, and the order of assembly, with torques and lubricants.</li>
+  <li>ETA’s <em>Manufacturing Information</em>: frequency, lift angle, power reserve, the mainspring and balance specifications.</li>
+  <li>A community CAD model of the 6497-1 from GrabCAD, in every format under the sun: STEP, STL, VRML, Rhino, SolidWorks.</li>
+</ul>
+<p>And I had one sentence, which I gave to Claude Code as a standing goal:</p>
+<blockquote>Using the PDF documentation and 3D model files, create a WebGL interactive assembly game where the watch is assembled piece by piece and can be run. Add automated assembly and run-the-watch buttons. Make the UI in the style of the classic George Daniels book <em>Watchmaking</em>.</blockquote>
+<p>If you don’t know it, Daniels’ <em>Watchmaking</em> (1981) is the bible: cream pages, Garamond, small capitals, and line drawings with lettered callouts (“<em>A</em>, centre wheel; <em>B</em>, third wheel”). I wanted to know two things. Can an agent read real engineering documents and a real CAD assembly and turn them into something mechanically faithful? And what does that cost now?</p>
+</section>
+
+<section class="col">
+<h2>Reading the drawings</h2>
+<p>The first good decision was not mine. Faced with that pile of formats, Claude went past the obvious one. The STL is a single 38&nbsp;MB anonymous triangle soup. The VRML has 84 shapes, all named “ETA 6497-1 Movement”. But a STEP file keeps the assembly tree from the original CAD tool, and a quick <code>grep</code> showed 44 named products: <code>100 Main Plate</code>, <code>201 Centre wheel</code>, <code>705 Escape wheel</code>, <code>5110 Screw for train wheel bridge</code>, and so on. For a game where parts must move separately, that tree is everything.</p>
+<pre class="mermaid">
+flowchart LR
+  S["STEP assembly<br/>18 MB, 44 named parts"] --> T["occt-import-js<br/>Open CASCADE in WASM"] --> P["packed meshes<br/>3.5 MB, quantized"] --> G["three.js scene<br/>one pivot per arbor"]
+  D["ETA PDFs<br/>order of assembly, specs"] --> J["parts.js<br/>41 steps, 6 stages"] --> G
+</pre>
+<p>Open CASCADE, compiled to WebAssembly, tessellated the B-rep surfaces in about ten seconds: 89 meshes and 219,000 triangles. A small packer stored positions as 16-bit integers across the movement’s bounding box, which is about 0.6&nbsp;µm of precision, and normals as 8-bit. The whole movement ships in 3.5&nbsp;MB.</p>
+<p>Then came the part that made me sit up. A wheel in a game needs an axis to turn about, and CAD files don’t label axes. Claude found them the way a watchmaker would, from the <strong>jewels</strong>. It took the bounding boxes of the small ruby meshes in the train bridge and the plate, and measured the arbors from them: the escape wheel at (4.70, −10.65)&nbsp;mm, the pallet staff at (7.08, −7.81)&nbsp;mm, the balance at (10.363, −3.905)&nbsp;mm. Where the wheel’s own bounding box and its jewel disagreed by 35&nbsp;µm (fifteen teeth is an odd number, so the box is lopsided), it trusted the jewel.</p>
+<p>The PDFs gave the order. ETA lays out the assembly in six stages, by position number. That became a 41-step data file, with ETA’s own torques on every screw and its lubricants where it names them:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Stage</th><th>Side</th><th>What goes in</th><th>From the ETA document</th></tr></thead>
+  <tbody>
+    <tr><td>I. Keyless work</td><td>dial</td><td>setting lever, winding and sliding pinions, stem</td><td>screw 900 at 1.0&nbsp;Ncm, “max. 2 turns” until the stem is in</td></tr>
+    <tr><td>II. Yoke and setting wheels</td><td>dial</td><td>yoke, yoke spring, setting wheels, minute wheel, jumper</td><td>Moebius HP-1300 or D5; screw 901 at 1.2&nbsp;Ncm</td></tr>
+    <tr><td>III. Going train</td><td>bridge</td><td>escape, third, second and centre wheels; train bridge</td><td>screws 902 at 1.3&nbsp;Ncm</td></tr>
+    <tr><td>IV. Barrel and winding</td><td>bridge</td><td>barrel, barrel bridge, crown wheel, click, ratchet</td><td>0.8 to 1.3&nbsp;Ncm by screw</td></tr>
+    <tr><td>V. Escapement</td><td>bridge</td><td>pallet fork and bridge, balance, balance bridge</td><td>lift angle 44°</td></tr>
+    <tr><td>VI. Motion work</td><td>dial</td><td>cannon pinion, hour wheel</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p>One detail from the parts table is worth noting. The setting-lever screw is listed in the dial-side stage, but in the model its head sits on the <em>bridge</em> side. Claude noticed, and the game turns the movement over for that one screw. That is also how a real 6497 works: you release the stem from the back.</p>
+</section>
+
+<section class="col">
+<h2>From a pile of parts to a going train</h2>
+<p>The interaction model came together quickly:</p>
+<ul>
+  <li>Pick the next part from the parts list. A wrong choice counts as a fault.</li>
+  <li>The part follows your pointer over a shadow of where it belongs, with a little magnetism when it is close, and you click to seat it.</li>
+  <li>Screws spin down as they go home, and the movement turns itself over when the work changes sides.</li>
+</ul>
+<figure>
+  <img src="img/02-part-in-hand.jpg" width="1600" height="894" loading="lazy" alt="The dial side of the bare main plate, with the setting lever's place shown as a shadow at the top and lettered callouts A and B.">
+  <figcaption>Step 2: the setting lever in hand, its place shown in shadow. The callouts and the “Fig. 1” caption update as parts go in, as in a book plate.</figcaption>
+</figure>
+<p>Making it <em>run</em> was the interesting engineering. Claude did not animate each wheel at its own speed. It derived everything from the balance:</p>
+<ul>
+  <li>The balance swings at 3&nbsp;Hz, which is ETA’s 21,600 vibrations an hour.</li>
+  <li>The escape wheel advances half a tooth, 12°, on each beat, and only while the balance is inside the 44° lift zone.</li>
+  <li>Every other wheel, the hands, the mini-dial and the 56-hour power reserve follow from those escape steps through the gear ratios.</li>
+</ul>
+<p>Because of that, the behaviour follows from the mechanism instead of being scripted. Let the mainspring run down and the amplitude falls. Once the balance can no longer swing through the lift zone, the escapement stops releasing teeth and the watch stops on its own.</p>
+<figure>
+  <img src="img/03-first-run.jpg" width="1600" height="894" loading="lazy" alt="The completed movement seen from the back in colour, running, with a rate card showing time, a full 56-hour reserve, 305 degrees of amplitude and the beat rate.">
+  <figcaption>First run, before the first commit: 305° of amplitude, a full reserve, and the train stepping one tooth at a time. Lettered callouts <em>A</em>–<em>G</em> name the barrel, train, pallet fork and balance.</figcaption>
+</figure>
+<p>There is an honest gap here, and the agent stated it up front. The ETA documents do not give tooth counts, and the CAD model only implies them. So the gear ratios are plausible choices that make the seconds, minute and hour timing correct, not the 6497’s real counts. The hands keep correct time. A wheel-by-wheel tooth count would be the next thing to extract from the geometry.</p>
+</section>
+
+<section class="col">
+<h2>Iterating like an art director</h2>
+<p>After the first build, my job was mostly taste. Each request was one sentence, and each took a few minutes:</p>
+<div class="gallery">
+  <figure><img src="img/01-first-frame.jpg" width="1600" height="894" loading="lazy" alt="The first rendered frame: an empty dark split-ring movement holder on a cream page."><figcaption>The first frame: only the movement holder, too dark and too close.</figcaption></figure>
+  <figure><img src="img/04-first-engraving.jpg" width="1600" height="894" loading="lazy" alt="The movement drawn as black line work over plain white surfaces, like a technical illustration."><figcaption>An “engraving” mode, from EdgesGeometry over flat white surfaces.</figcaption></figure>
+  <figure><img src="img/06-ruthenium-plate.jpg" width="1600" height="894" loading="lazy" alt="The keyless work in steel and gilt on a near-black main plate."><figcaption>“Make the main plate high contrast”: a dark ruthenium tone.</figcaption></figure>
+  <figure><img src="img/07-brass-plate.jpg" width="1600" height="894" loading="lazy" alt="The going train being assembled on a warm brass main plate."><figcaption>“Brass instead of black.” Warmer and duller than the gilt wheels, so they still read apart.</figcaption></figure>
+  <figure><img src="img/08-washes.jpg" width="1600" height="1004" loading="lazy" alt="The completed movement as an engraving with pale coloured washes: brass plate, silver bridges, gilt wheels, blue screws and rose-coloured jewels."><figcaption>The final style: ink line over pale washes of each metal. The colour mode was retired.</figcaption></figure>
+  <figure><img src="img/05-intro.jpg" width="1600" height="894" loading="lazy" alt="An introductory dialog in the book's typography explaining how to play."><figcaption>An intro modal written in the book’s voice, with “Begin” and “Watch it assembled”.</figcaption></figure>
+</div>
+<p>The music request is my favourite example of the agent doing the boring parts properly. I asked for “a low-bitrate Mozart track”. Here is what Claude did:</p>
+<ul>
+  <li>Searched Wikimedia Commons and picked a Musopen recording of the String Quartet K.&nbsp;465 (<em>Andante cantabile</em>), checking that the <em>recording</em>, not just the composition, is public domain.</li>
+  <li>Found there was no ffmpeg, and used macOS’s built-in <code>afconvert</code> instead.</li>
+  <li>Hit a channel-mixing error, worked around it with a two-step encode, and got the 72&nbsp;MB FLAC down to 1.9&nbsp;MB of 32&nbsp;kbps mono AAC.</li>
+  <li>Credited it, along with the CAD model, the ETA documents, the typeface and the libraries, in an in-game credits panel and the README.</li>
+</ul>
+<p>It also raised the question I hadn’t asked: the GrabCAD model’s licence was unclear, so publishing meshes derived from it was my call to make, not its call.</p>
+<figure>
+  <img src="img/09-exploded-layers.jpg" width="1600" height="1004" loading="lazy" alt="An exploded view from above: screws float above bridges, the ratchet and crown wheel above the barrel bridge, and the train beneath."><figcaption>The exploded view, fixed so it follows the build: plate, wheels, bridges, winding wheels, then screws.</figcaption>
+</figure>
+</section>
+
+<section class="col">
+<h2>What the agent got wrong</h2>
+<p>As in my <a href="/posts/sel4-meets-lean/">seL4 port</a>, the instructive mistakes were the ones that <em>looked fine</em>.</p>
+<p><strong>The screws were loosening themselves in.</strong> From the very first build, every screw spun anticlockwise as it seated: the unscrewing direction. The code comment said exactly the right thing: “right-hand threads clockwise from the head, the crown wheel screw left-handed”. The sign in the formula did the opposite. Nobody noticed, including me, until I asked directly whether the screws turned the right way. Claude didn’t trust its own algebra a second time. It seated all 13 screws in the browser while projecting a point on each screw’s rim to screen space, frame by frame, through every camera and turn-over transform:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Screws</th><th>Head faces</th><th>Measured on screen, seen from the head</th></tr></thead>
+  <tbody>
+    <tr><td>11 bridge, click, ratchet and setting-lever screws</td><td>back</td><td class="n">−3.00 turns · clockwise</td></tr>
+    <tr><td>Jumper screw (901)</td><td>dial</td><td class="n">−3.00 turns · clockwise</td></tr>
+    <tr><td>Crown wheel screw (903), left-hand thread</td><td>back</td><td class="n">+3.00 turns · anticlockwise</td></tr>
+  </tbody>
+</table></div>
+<p>That is the lesson of the whole session in one table. The intent was right, the implementation was wrong, and only a measurement of what was actually rendered settled it.</p>
+<p>The rest of the list is smaller and just as telling:</p>
+<ul>
+  <li>The first rubies rendered as pink candy.</li>
+  <li>A callout letter hid under the rate card.</li>
+  <li><code>scrollIntoView</code> dragged the whole phone page down to the parts list.</li>
+  <li>A rewrite of the README’s image alt text dropped one <code>]</code>, so the screenshot showed as raw text on GitHub.</li>
+  <li>The original lights were fixed in the world, so orbiting to the far side left parts in shadow. The fix was a headlight that travels with the camera, like a bench lamp that follows the eyeglass, plus hiding the contact shadow from below.</li>
+</ul>
+<p>The first three were caught by the agent’s own screenshot checks. The last two needed my eyes.</p>
+<figure>
+  <img src="img/10-lit-from-below.jpg" width="1600" height="1004" loading="lazy" alt="The exploded movement seen from underneath, evenly lit: the brass underside of the main plate, the stem and the keyless parts below."><figcaption>After the lighting fix: the view from underneath, which used to fall into shadow, is now evenly lit.</figcaption>
+</figure>
+</section>
+
+<section class="col">
+<h2>What it cost</h2>
+<p>Measured from the session transcript and the git history, up to the lighting fix:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Measure</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Time from my first prompt to the first working, committed game</td><td class="n">37 min</td></tr>
+    <tr><td>Active session time (gaps under 5 minutes)</td><td class="n">~1 h 12 min</td></tr>
+    <tr><td>My requests</td><td class="n">13</td></tr>
+    <tr><td>Model responses / tool calls</td><td class="n">137 / 165</td></tr>
+    <tr><td>Output tokens</td><td class="n">~144 k</td></tr>
+    <tr><td>Cache writes / cache reads</td><td class="n">0.6 M / 31.9 M</td></tr>
+    <tr><td>Commits</td><td class="n">9</td></tr>
+    <tr><td>Code: game logic / assembly data / CSS / HTML</td><td class="n">1,001 / 222 / 326 / 143 lines</td></tr>
+    <tr><td>Assets: model / music</td><td class="n">3.5 MB / 1.9 MB</td></tr>
+  </tbody>
+</table></div>
+<p class="note">Time and tokens are this session only. Tessellation tooling, the public repo, GitHub Pages, the MIT licence and credits are all included. Writing this post is not.</p>
+</section>
+
+<section class="col">
+<h2>The state of agentic mechanical design, from one bench</h2>
+<p>One movement is not a survey, so take this as field notes.</p>
+<p><strong>Reading an existing design is now cheap.</strong> The agent read a 24-page service document and a CAD assembly, worked out where every arbor is from the jewels, and produced a faithful, interactive assembly sequence in well under an hour. Plenty of firms pay for that kind of interactive service manual or training tool today. It is turning into a conversation.</p>
+<p><strong>The file is not the design.</strong> The STEP file knows where every surface is. It does not know tooth counts, thread handedness, which way a wheel turns, or why the setting-lever screw goes in from the back. Some of that is in the PDFs and some is in the agent’s background knowledge. Some of it, like the real tooth counts, was in neither, and the honest move was to say so. Mechanical design intent lives across drawings, documents and people’s heads, and the agent does best when it can get at all three.</p>
+<p><strong>Spatial bugs are plausible bugs.</strong> A sign error in a rotation looks exactly like a working screw unless you know to watch the direction. The fix was the same as in software verification: instrument the real output and compare it with the physical truth. I expect “measure the rendered thing” to become a standard step for mechanical agents, the way tests are for code.</p>
+<p><strong>Provenance is part of the job.</strong> The agent kept the ETA PDFs out of the public repo because of their rights notice, checked the recording’s licence, and flagged the CAD model’s unclear terms instead of shrugging. In mechanical work, where models get downloaded and passed around endlessly, that matters more than people admit.</p>
+<p><strong>The human is the watchmaker, not the hands.</strong> I chose the brass, the engraving, the quieter ticks, and asked the awkward question about the screws. The agent did the tessellation, the kinematics, the encoding, the deploys and the hundred small corrections. That split felt right.</p>
+<figure class="phone">
+  <img src="img/11-phone.jpg" width="600" height="966" loading="lazy" alt="The game on a phone: the figure page with the bare main plate above the controls.">
+  <figcaption>It works on a phone too: the figure page comes first, and the text page follows.</figcaption>
+</figure>
+<p>Not long ago, a faithful interactive teardown of a Swiss movement meant a team, a CAD seat, a 3D artist and weeks. This week it meant two PDFs, a downloaded model, one sentence and a cup of coffee. Then I spent the rest of the night arguing about the colour of brass. What a time to be alive.</p>
+</section>
+
+<hr class="col">
+
+<footer class="col">
+  <p>Play it at <a href="https://elevenarms.github.io/6497D/">elevenarms.github.io/6497D</a>. Code and credits: <a href="https://github.com/elevenarms/6497D">github.com/elevenarms/6497D</a> (MIT for the code). Movement model: <em>ETA 6497-1 complete watch movement</em>, GrabCAD community. Technical data: ETA SA, CT 6497-2 and IH 6497-2. Music: Mozart, K.&nbsp;465, Musopen String Quartet (public domain). Built with <a href="https://threejs.org">three.js</a> and <a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a>. Not affiliated with ETA SA or the estate of George Daniels.</p>
+</footer>
+</main>
+
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral", securityLevel: "strict" });
+</script>
+</body>
+</html>
