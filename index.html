@@ -4,33 +4,252 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>elevenarms</title>
-<meta name="description" content="Writing on systems, formal verification and building with AI.">
-<link rel="stylesheet" href="/assets/site.css">
+<meta name="theme-color" content="#ffffff">
+<title>Dave Rauchwerk</title>
+<meta name="description" content="Dave Rauchwerk, technologist. Co-founder of Next Thing Co., maker of C.H.I.P., the $9 computer. Projects, videos, press and writing.">
+<meta property="og:title" content="Dave Rauchwerk, technologist">
+<meta property="og:description" content="Co-founder of Next Thing Co., maker of C.H.I.P., the $9 computer. Projects, videos, press and writing.">
+<meta property="og:image" content="https://elevenarms.github.io/assets/img/pocketchip.jpg">
+<meta property="og:url" content="https://elevenarms.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/portfolio.css">
 </head>
 <body>
-<header>
-  <h1>elevenarms</h1>
-  <p>Writing on systems, formal verification and building with AI.</p>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Dave Rauchwerk</h1>
+    <p class="role">Technologist.</p>
+    <p class="intro">I co-founded Next Thing Co. and shipped C.H.I.P., the $9 computer, and PocketC.H.I.P., a handheld Linux computer. The Kickstarter for C.H.I.P. raised $2,071,972 from 39,560 backers on a $50,000 goal.</p>
+    <p class="intro">I still build across the whole stack, from circuit boards to emulators to AI agents. My recent work checks the AI against something it can’t argue with: a physics simulation, a proof checker, a measured test.</p>
+    <p class="links">
+      <a href="https://github.com/elevenarms">GitHub</a>
+      <a href="https://x.com/_elevenarms">X</a>
+      <a href="https://www.linkedin.com/in/dave-rauchwerk-0ba82822/">LinkedIn</a>
+      <a href="https://rauchwerkresearch.substack.com/">Substack</a>
+    </p>
+  </div>
 </header>
 
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#work">Work</a>
+    <a href="#ntc">Next Thing Co.</a>
+    <a href="#videos">Videos</a>
+    <a href="#press">Press</a>
+    <a href="#writing">Writing</a>
+  </div>
+</nav>
+
 <main>
-  <ul class="index">
-    <li>
-      <time datetime="2026-10-13">2026-10-13</time>
-      <a href="/posts/agentic-watchmaking/">An Agent at the Watchmaker’s Bench</a>
-      <p>Two ETA PDFs, a CAD folder and one sentence. An hour and a quarter later, a Swiss pocket-watch movement could be assembled screw by screw in a browser and set ticking.</p>
-    </li>
-    <li>
-      <time datetime="2026-10-08">2026-10-08</time>
-      <a href="/posts/sel4-meets-lean/">seL4, Meet Lean</a>
-      <p>Can the mountain of human-checked proof behind the world's most verified kernel bootstrap a version in Lean? 27 hours with Claude Opus 5.5: what worked, what checking against l4v's own Isabelle caught, and what finishing would cost.</p>
-    </li>
-  </ul>
+  <section id="work">
+    <div class="wrap">
+      <h2>Work <span>2026</span></h2>
+      <div class="grid">
+
+        <article class="p">
+          <figure><img src="/assets/img/sparc.jpg" alt="The OpenWindows desktop on an emulated SPARCstation, running in a browser" width="1400" height="878" loading="lazy"></figure>
+          <div class="meta"><span>2026</span><span>Emulation</span></div>
+          <h3>InfiniteSPARCjit</h3>
+          <p>A SPARCstation 5 running SunOS 4.1.4 and OpenWindows in a web browser. QEMU is compiled to WebAssembly with a SPARC-to-WebAssembly JIT, and the 2&nbsp;GB disk streams as a 72&nbsp;MB image. The only existing wasm JIT crashed SunOS three different ways; fixing it took a headless harness and JIT bisection.</p>
+          <p class="go"><a href="https://elevenarms.github.io/InfiniteSPARCjit/">Boot it</a><a href="https://github.com/elevenarms/InfiniteSPARCjit">Source</a></p>
+        </article>
+
+        <article class="p">
+          <figure><img src="/assets/img/beamteam.jpg" alt="A figure from a physics paper over a 3D optical bench, with parts boxed by vision agents" width="1400" height="745" loading="lazy"></figure>
+          <div class="meta"><span>2026</span><span>Agents · Optics · Hackathon</span></div>
+          <h3>BEAMTEAM</h3>
+          <p>Gemini agents design tabletop laser-optics setups for atomic and quantum physics labs, or rebuild one from a figure in a published paper, in under three minutes. A deterministic physics tracer checks every design. The output is a build kit: parts list, keyed printable baseplates and an assembly PDF.</p>
+          <p class="go"><a href="https://elevenarms.github.io/beamteam/">Project page</a><a href="https://github.com/elevenarms/beamteam">Source &amp; paper</a></p>
+        </article>
+
+        <article class="p">
+          <figure><img src="/assets/img/rshi.jpg" alt="The SparkleTeam studio: an agent team graph beside a simulated dishwasher" width="1400" height="745" loading="lazy"></figure>
+          <div class="meta"><span>2026</span><span>Self-improving agents · Hackathon</span></div>
+          <h3>SparkleTeam (RSHI)</h3>
+          <p>Five open Nemotron models on Crusoe learn to load a physically simulated dishwasher. They rewrite their own prompts, tools and team structure, and keep a change only if it wins a paired, measured test. The team found real physics, and the replication caught a learned superstition: +17.8 points became −0.3.</p>
+          <p class="go"><a href="https://elevenarms.github.io/RSHI/">Project page</a><a href="https://github.com/elevenarms/RSHI">Source &amp; paper</a></p>
+        </article>
+
+        <article class="p">
+          <figure><img src="/assets/img/6497.jpg" alt="Exploded view of the ETA 6497 watch movement drawn as an engraved plate" width="1400" height="1050" loading="lazy"></figure>
+          <div class="meta"><span>2026</span><span>WebGL · Horology</span></div>
+          <h3>Assembling the 6497</h3>
+          <p>The ETA 6497 hand-wound watch movement, tessellated from the manufacturer’s CAD and assembled part by part in ETA’s own order, drawn in the style of George Daniels’ <i>Watchmaking</i>. Wind it and it runs: the train, hands and power reserve all follow from a 3&nbsp;Hz escapement.</p>
+          <p class="go"><a href="https://elevenarms.github.io/6497D/">Assemble it</a><a href="https://github.com/elevenarms/6497D">Source</a><a href="/posts/agentic-watchmaking/">How it was made</a></p>
+        </article>
+
+        <article class="p">
+<pre aria-label="Diagram of the seL4 refinement stack"><b>Abstract spec</b>     hand-written Isabelle
+      ▲  refine
+<b>Executable spec</b>   Haskell → Isabelle → <b>Lean</b>
+      ▲  refine
+<b>C implementation</b>  C-parser → Simpl
+
+1319 / 1319  Isabelle constants in Lean
+  60 / 60    testable functions agree</pre>
+          <div class="meta"><span>2026</span><span>Formal verification</span></div>
+          <h3>sel4-lean</h3>
+          <p>Porting the formal verification of the seL4 microkernel from Isabelle/HOL to Lean 4. The executable spec is checked against l4v’s own built Isabelle spec, and that check found real differences an earlier port had missed.</p>
+          <p class="go"><a href="/posts/sel4-meets-lean/">Write-up</a><a href="https://github.com/elevenarms/sel4-lean">Source</a></p>
+        </article>
+
+        <article class="p">
+<pre aria-label="A puffy session in a terminal">$ puffy enable ntpd and show me how to check it
+# rcctl(8) manages daemons: "enable" writes
+# ntpd_flags to /etc/rc.conf.local so ntpd starts
+# at boot; "start" starts it now.
+doas rcctl enable ntpd
+doas rcctl start ntpd
+doas rcctl check ntpd
+<b>Run this script? [y]es [n]o [e]xplain [q]uit:</b></pre>
+          <div class="meta"><span>2026</span><span>Agent · OpenBSD</span></div>
+          <h3>puffy</h3>
+          <p>An OpenBSD-native agent that manages, configures and programs the machine, and explains each step by pointing to the man page. It plans with a model on confidential compute; with no network it falls back to searching the OpenBSD manual and package catalog locally.</p>
+          <p class="go"><a href="https://elevenarms.github.io/puffy/">Project page</a><a href="https://github.com/elevenarms/puffy">Source</a></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="earlier">
+    <div class="wrap">
+      <h2>Prototypes <span>2020–2025</span></h2>
+      <div class="grid">
+
+        <article class="p">
+          <figure><img src="/assets/img/cyclops.jpg" alt="A head-mounted camera rig" width="1100" height="825" loading="lazy"></figure>
+          <div class="meta"><span>2025</span><span>Real-time multimodal AI</span></div>
+          <h3>Cyclops camera</h3>
+          <p>A head-mounted camera streams first-person video to Gemini for real-time conversation with no wake word, so you can read a book with an AI as you turn the pages. It worked thirty minutes after the idea.</p>
+          <p class="go"><a href="https://rauchwerkresearch.substack.com/p/an-ai-demo-you-need-to-see">Write-up</a></p>
+        </article>
+
+        <article class="p">
+          <figure><img src="/assets/img/jaguar.jpg" alt="A transparent Atari Jaguar console shell" width="1100" height="1100" loading="lazy"></figure>
+          <div class="meta"><span>2022</span><span>Manufacturing</span></div>
+          <h3>Atari Jaguar molds, recovered</h3>
+          <p>The original Atari Jaguar injection molds, brought back into service in Los Angeles to test whether US factories can still make consumer electronics. The result was transparent cases for an FPGA console, and hard lessons about volume versus value.</p>
+        </article>
+
+        <article class="p">
+          <figure><img src="/assets/img/raman.jpg" alt="A Raman spectrometer rig with a Raspberry Pi touchscreen" width="1100" height="825" loading="lazy"></figure>
+          <div class="meta"><span>2020</span><span>Diagnostics · Edge ML</span></div>
+          <h3>A COVID-19 test in two and a half weeks</h3>
+          <p>A portable surface-enhanced Raman saliva test built for a Defense Innovation Unit open call: a modified spectrometer from eBay, a bridge from Windows CE to Linux, and TensorFlow Lite on a Raspberry Pi.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="ntc">
+    <div class="wrap">
+      <h2>Next Thing Co. <span>2013–2018</span></h2>
+      <p class="lede">Co-founder and CEO, with Gustavo Huber and Thomas Deckert, in Oakland. We started with a GIF camera and ended up making some of the cheapest Linux computers ever sold.</p>
+      <div class="grid">
+
+        <article class="p">
+          <figure><img class="tall" src="/assets/img/pocketchip.jpg" alt="PocketC.H.I.P., a handheld computer with a screen and keyboard" width="977" height="1400" loading="lazy"></figure>
+          <div class="meta"><span>2016</span><span>$49 handheld</span></div>
+          <h3>PocketC.H.I.P.</h3>
+          <p>A handheld Linux computer for $49: a 4.3″ touchscreen, a clicky keyboard, GPIO across the top, a five-hour battery and the PICO-8 fantasy console preinstalled. Play first, then open a terminal and start tinkering.</p>
+          <p class="go"><a href="https://www.youtube.com/watch?v=hXDizTasY6A">Tested video</a><a href="https://makerfaire.com/maker/entry/56267/">Maker Faire talk</a><a href="https://www.cnx-software.com/2016/06/25/review-of-pocketchip-hackable-portable-linux-computer/">Review</a></p>
+        </article>
+
+        <article class="p">
+          <figure><img class="tall" src="/assets/img/mega-pocketchip.jpg" alt="A giant working PocketC.H.I.P. at Maker Faire" width="722" height="1100" loading="lazy"></figure>
+          <div class="meta"><span>2016</span><span>Maker Faire</span></div>
+          <h3>Mega PocketC.H.I.P.</h3>
+          <p>A giant, working PocketC.H.I.P. for Maker Faire, so a crowd could press the keys. Every key worked.</p>
+        </article>
+
+        <article class="p">
+          <div class="meta"><span>2015</span><span>$9 computer</span></div>
+          <h3>C.H.I.P.</h3>
+          <p>A 1&nbsp;GHz ARM computer with 512&nbsp;MB of RAM, 4&nbsp;GB of storage, Wi-Fi and Bluetooth, for $9. The question was why the parts in a $50 Android tablet couldn’t make a $9 computer. It ran open source on mainline Linux, and the Kickstarter raised $2,071,972 from 39,560 backers, 41 times its goal.</p>
+          <p class="go"><a href="https://en.wikipedia.org/wiki/CHIP_(computer)">Wikipedia</a><a href="https://www.youtube.com/watch?v=KqNfpL8ML_w">Stanford talk</a><a href="https://hackaday.com/2015/05/19/interview-with-the-creators-of-chip-a-9-single-board-computer/">Hackaday interview</a></p>
+        </article>
+
+        <article class="p">
+          <div class="meta"><span>2016–2017</span><span>Modules</span></div>
+          <h3>C.H.I.P. Pro &amp; GR8</h3>
+          <p>A $16 FCC-certified module and the $6 GR8 system-in-package, both on mainline Linux, so other companies could ship products on the platform. Engadget reported more than 100,000 C.H.I.P.s sold.</p>
+          <p class="go"><a href="https://www.engadget.com/2017-01-24-next-thing-co-chip-pro-gr8-interview.html">Engadget</a><a href="https://www.theregister.com/2016/10/11/chip_pro_launch/">The Register</a></p>
+        </article>
+
+        <article class="p">
+          <div class="meta"><span>2014</span><span>Camera</span></div>
+          <h3>OTTO</h3>
+          <p>A hackable GIF camera you crank: every click of the crank captures a frame. It was the first product built on the Raspberry Pi Compute Module, came out of the HAXLR8R hardware accelerator in Shenzhen, and ran code you could change in Python or Node.</p>
+          <p class="go"><a href="https://www.npr.org/sections/alltechconsidered/2014/05/21/312149951/a-camera-designed-to-take-and-send-gifs-bring-your-own-cat">NPR</a><a href="https://makezine.com/article/technology/raspberry-pi/otto-the-raspberry-pi-hackable-gif-camera/">Make:</a></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <h2>Videos <span>2015–2016</span></h2>
+      <div class="vids">
+        <a class="vid" href="https://www.youtube.com/watch?v=KqNfpL8ML_w"><img src="https://i.ytimg.com/vi/KqNfpL8ML_w/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Stanford EE380 · Nov 2015</span><b>$9 Computer Architecture: The Chips That Make C.H.I.P., C.H.I.P.</b></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=ih9SOZcpk5Q"><img src="https://i.ytimg.com/vi/ih9SOZcpk5Q/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>O’Reilly OSCON · Jul 2015</span><b>Next Thing Co.’s Dave Rauchwerk Built a $9 Computer</b></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=V6OIQc8y6gQ"><img src="https://i.ytimg.com/vi/V6OIQc8y6gQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Kickstarter · Jul 2015</span><b>Creator Hangouts: Next Thing Co’s Dave Rauchwerk</b></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=7F0OwKy1jjI"><img src="https://i.ytimg.com/vi/7F0OwKy1jjI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Make: · Jun 2015</span><b>C.H.I.P.: The World’s First Nine Dollar Computer</b></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=hXDizTasY6A"><img src="https://i.ytimg.com/vi/hXDizTasY6A/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Adam Savage’s Tested · May 2016</span><b>Pocket CHIP: $49 Indie Game Console</b></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=9CSpx2Ozamk"><img src="https://i.ytimg.com/vi/9CSpx2Ozamk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>TWiT · Jul 2016</span><b>PocketCHIP: The $50 Portable Linux Computer</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="press">
+    <div class="wrap">
+      <h2>Press <span>2014–2018</span></h2>
+      <ul class="rows">
+        <li><span class="y">2018</span><span class="o">Hackaday</span><a class="t" href="https://hackaday.com/2018/07/20/the-c-h-i-p-returns-maybe/">The C.H.I.P. returns, maybe</a></li>
+        <li><span class="y">2017</span><span class="o">Engadget</span><a class="t" href="https://www.engadget.com/2017-01-24-next-thing-co-chip-pro-gr8-interview.html">How an animated-GIF camera morphed into a nascent chip empire</a></li>
+        <li><span class="y">2016</span><span class="o">The Register</span><a class="t" href="https://www.theregister.com/2016/10/11/chip_pro_launch/">Pocket C.H.I.P. makers go Pro with ARM module for IoT builders</a></li>
+        <li><span class="y">2016</span><span class="o">O’Reilly Radar</span><a class="t" href="https://www.oreilly.com/content/dave-rauchwerk-on-creating-a-9-computer/">Podcast: Dave Rauchwerk on creating a $9 computer</a></li>
+        <li><span class="y">2016</span><span class="o">TWiT</span><a class="t" href="https://twit.tv/shows/new-screen-savers/episodes/62">The New Screen Savers: $50 Linux computer in your pocket</a></li>
+        <li><span class="y">2016</span><span class="o">Maker Faire</span><a class="t" href="https://makerfaire.com/maker/entry/56267/">PocketC.H.I.P., or how and why we made the sci-fi device from our childhood</a></li>
+        <li><span class="y">2016</span><span class="o">CNX Software</span><a class="t" href="https://www.cnx-software.com/2016/06/25/review-of-pocketchip-hackable-portable-linux-computer/">Review of PocketCHIP hackable handheld Linux computer</a></li>
+        <li><span class="y">2016</span><span class="o">CBS SF</span><a class="t" href="https://www.cbsnews.com/sanfrancisco/news/a-9-computer-is-making-waves/">$9 computer designed in Oakland makes waves</a></li>
+        <li><span class="y">2016</span><span class="o">NPR</span><a class="t" href="https://www.npr.org/sections/alltechconsidered/2016/01/21/463592334/can-a-9-computer-spark-a-new-wave-of-tinkering-and-innovation">Can a $9 computer spark a new wave of tinkering and innovation?</a></li>
+        <li><span class="y">2015</span><span class="o">O’Reilly</span><a class="t" href="https://www.oreilly.com/content/welcome-to-the-age-of-costless-computers/">Welcome to the age of costless computers</a></li>
+        <li><span class="y">2015</span><span class="o">Make:</span><a class="t" href="https://makezine.com/article/maker-news/the-9-computer-is-shipping-today/">The $9 computer is shipping today</a></li>
+        <li><span class="y">2015</span><span class="o">Hackaday</span><a class="t" href="https://hackaday.com/2015/05/19/interview-with-the-creators-of-chip-a-9-single-board-computer/">Interview with the creators of CHIP, a $9 single-board computer</a></li>
+        <li><span class="y">2015</span><span class="o">Entrepreneur</span><a class="t" href="https://www.entrepreneur.com/article/246198">This tiny $9 computer blazed past the million-dollar mark on Kickstarter</a></li>
+        <li><span class="y">2015</span><span class="o">Fortune</span><a class="t" href="https://fortune.com/2015/05/11/this-9-computer-could-change-the-economics-of-building-hardware/">This $9 computer could change the economics of building hardware</a></li>
+        <li><span class="y">2015</span><span class="o">Make:</span><a class="t" href="https://makezine.com/article/maker-news/next-thing-co-releases-worlds-first-9-computer/">Next Thing Co. releases “world’s first” $9 computer</a></li>
+        <li><span class="y">2015</span><span class="o">Laughing Squid</span><a class="t" href="https://laughingsquid.com/c-h-i-p-the-worlds-first-nine-dollar-computer/">C.H.I.P., the “world’s first” nine-dollar computer</a></li>
+        <li><span class="y">2014</span><span class="o">NPR</span><a class="t" href="https://www.npr.org/sections/alltechconsidered/2014/05/21/312149951/a-camera-designed-to-take-and-send-gifs-bring-your-own-cat">A camera designed to take and send GIFs</a></li>
+        <li><span class="y">2014</span><span class="o">New Atlas</span><a class="t" href="https://newatlas.com/otto-camera-gifs-phone/32141/">Otto camera captures GIFs and syncs them to your phone</a></li>
+        <li><span class="y">2014</span><span class="o">Make:</span><a class="t" href="https://makezine.com/article/technology/raspberry-pi/otto-the-raspberry-pi-hackable-gif-camera/">OTTO, the Raspberry Pi hackable GIF camera</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="writing">
+    <div class="wrap">
+      <h2>Writing</h2>
+      <ul class="rows">
+        <li><span class="y">2026</span><span class="o">Blog</span><a class="t" href="/posts/agentic-watchmaking/">An Agent at the Watchmaker’s Bench</a></li>
+        <li><span class="y">2026</span><span class="o">Blog</span><a class="t" href="/posts/sel4-meets-lean/">seL4, Meet Lean</a></li>
+        <li><span class="y">2025</span><span class="o">Substack</span><a class="t" href="https://rauchwerkresearch.substack.com/p/an-ai-demo-you-need-to-see">An AI demo you need to see</a></li>
+      </ul>
+    </div>
+  </section>
 </main>
 
 <footer>
-  Projects: <a href="https://elevenarms.github.io/6497D/">6497D</a> · <a href="https://github.com/elevenarms/sel4-lean">sel4-lean</a> · <a href="https://github.com/elevenarms">github.com/elevenarms</a>
+  <div class="wrap">
+    <span>Dave Rauchwerk · technologist</span>
+    <span><a href="https://github.com/elevenarms">github.com/elevenarms</a> · <a href="https://x.com/_elevenarms">@_elevenarms</a></span>
+  </div>
 </footer>
 </body>
 </html>
