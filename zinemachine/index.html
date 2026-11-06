@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<title>Zine Machine: project overview</title>
+<meta name="description" content="Zine Machine v3: a pocket Linux computer built around a 40% keyboard, a PocketBeagle 2 Industrial and a 4.58-inch bar display. The hardware, the display simulator, and the agent-driven build pipeline behind them.">
+<meta property="og:title" content="Zine Machine: project overview">
+<meta property="og:description" content="A pocket Linux computer built around a 40% keyboard. Interactive 3D of the v3 design, the main board, the display simulator and the build pipeline.">
+<meta property="og:image" content="https://elevenarms.github.io/zinemachine/assets/img/exploded.jpg">
+<meta property="og:url" content="https://elevenarms.github.io/zinemachine/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="zm.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231fa9cf'/%3E%3Crect x='5' y='6' width='22' height='8' fill='%23111'/%3E%3Crect x='5' y='17' width='22' height='9' fill='%23e8e3d2'/%3E%3C/svg%3E">
+<script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.1/dist/es-module-shims.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <div>
+      <p class="crumb"><a href="/">elevenarms.github.io</a> / zinemachine</p>
+      <h1>Zine Machine</h1>
+      <p class="role">A pocket Linux computer built around a 40% keyboard.</p>
+      <p class="intro">The <a href="https://github.com/ChrisChrisLoLo/bancouver40">bancouver40</a> 4×10 Choc keyboard, a <a href="https://www.beagleboard.org/boards/pocketbeagle-2-industrial">PocketBeagle&nbsp;2 Industrial</a> and a 4.58″ 320×960 bar display, battery powered, in an open 3D-printed tray.</p>
+    </div>
+    <div class="side">
+      <p class="status"><b>Status, 6 Nov 2026.</b> v3 main board routed, DRC clean. Fab outputs and the “verify before ordering” checks are still open. Nothing has been built or tested on real hardware.</p>
+      <ul class="repos">
+        <li><a href="https://github.com/elevenarms/zinemachine0">zinemachine0</a><span>the hardware: board, mechanics, scripts</span></li>
+        <li><a href="https://github.com/elevenarms/zinemachine-sim">zinemachine-sim</a><span>the display, simulated in Docker</span></li>
+        <li><a href="https://github.com/elevenarms/backplane-vm">backplane-vm</a><span>the VM the design agents work in</span></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#model">3D</a><a href="#spec">Spec</a><a href="#electrical">Electrical</a><a href="#board">Main board</a><a href="#mech">Mechanical</a><a href="#display">Display &amp; sim</a><a href="#pipeline">Build pipeline</a><a href="#open">Open items</a><a href="#credits">Credits</a>
+  </div>
+</nav>
+
+<main>
+<section id="model">
+  <div class="wrap">
+    <h2>The v3 assembly, in 3D <span>zinemachine0 @ 8fed12c</span></h2>
+    <p class="lede">The same model the Blender renders come from: the routed main board exported from KiCad, with the FreeCAD tray, display chassis, battery and PocketBeagle envelope fitted around it, and keycaps carrying the stock QMK layers. Drag to orbit, pinch or scroll to zoom, and tap a dot for detail.</p>
+  </div>
+  <div class="wrap wide">
+    <div class="stage" id="stage">
+      <div class="viewport" id="viewport"></div>
+      <div class="hotspots" id="hotspots"></div>
+      <div class="loading" id="loading"><span>loading model</span><i><b id="loadbar"></b></i></div>
+      <aside class="card" id="card" hidden><button class="x" id="cardx" aria-label="Close">×</button><h3></h3><p></p></aside>
+      <noscript><img src="assets/img/exploded.jpg" alt="Exploded render of the Zine Machine v3"></noscript>
+    </div>
+    <div class="controls" id="controls">
+      <label class="slider">Explode <input type="range" id="explode" min="0" max="1" step="0.001" value="0"></label>
+      <div class="row" id="layers" aria-label="Layers"></div>
+      <div class="row" id="views" aria-label="Views">
+        <button data-view="hero">Hero</button><button data-view="top">Top</button><button data-view="rear">Rear I/O</button><button data-view="side">Side</button><button data-view="detail">Detail</button>
+        <button id="labels" class="on" aria-pressed="true">Labels</button><button id="spin" aria-pressed="false">Spin</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="spec">
+  <div class="wrap">
+    <h2>What it is <span>v3</span></h2>
+    <table class="kv">
+      <tr><th>Computer</th><td>PocketBeagle 2 Industrial: TI AM6254 (4 × Cortex-A53 + Cortex-M4F), 1 GB DDR4, 64 GB eMMC, −40…85 °C. Face-down on low-profile 3.55 mm sockets, USB-C out through the rear wall.</td></tr>
+      <tr><th>Keyboard</th><td>40 Kailh Choc v1 keys, 4 × 10 ortholinear with CFX caps, plus three red / yellow / blue mode keys. Switches soldered, no hot-swap.</td></tr>
+      <tr><th>Key scanning</th><td>The PocketBeagle’s Cortex-M4F reads every key directly through six chained 74HC165s on MCU-domain pins. No matrix, no diodes, full rollover.</td></tr>
+      <tr><th>Display</th><td>4.58″ 320 × 960 IPS bar (ST7701S), run landscape at 960 × 320. RGB565 over the AM62’s VOUT0 with 3-wire SPI init; TPS61165 backlight boost.</td></tr>
+      <tr><th>USB</th><td>FE1.1s hub on USB1; two rear USB-A ports, 500 mA each through TPS2051B switches.</td></tr>
+      <tr><th>Power</th><td>1S LiPo (about 9 × 40 × 70 mm, 2.5–3 Ah) under the display; IP5306 charger and 5 V boost with its own rear USB-C; slide switch; charge, power and boot LEDs.</td></tr>
+      <tr><th>Audio</th><td>ES8388 codec over I2S: TRRS headset jack (headphones + mic) and a TRS line out.</td></tr>
+      <tr><th>Main board</th><td>170 × 126 mm, 4 layers, every assembled part on the top side. 188 parts, 210 nets. Routed, DRC clean.</td></tr>
+      <tr><th>Enclosure</th><td>Open printed tray, 175.2 × 131.2 × 12.5 mm, plus a printed display chassis that holds the panel and clamps the battery. About 21 mm tall overall.</td></tr>
+    </table>
+    <figure class="legend-fig">
+      <img src="assets/img/top.jpg" alt="Top-down render of the Zine Machine v3: cream keycaps with coloured layer legends, the bar display, three red, yellow and blue mode keys, in a cyan tray" width="1600" height="1000" loading="lazy">
+      <figcaption>Keycap legends: base layer in the centre; Layer 1 (hold L1: numbers, brackets, arrows) top right in blue; Layer 2 (hold Space: shifted symbols) top left in green; Layer 3 (both: F-keys, volume, Del, Boot) bottom right in orange; hold functions bottom left.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="electrical">
+  <div class="wrap">
+    <h2>Electrical architecture <span>from DESIGN_v3.md</span></h2>
+    <p class="lede">v2 put an ATmega32U4 on the board to run QMK and plugged it into the PocketBeagle over USB. v3 drops it, along with 40 diodes and 40 hot-swap sockets: the AM6254 already has a spare microcontroller core. The M4F shifts in all 43 keys through a 74HC165 chain and hands them to Linux, so the keyboard needs no matrix and has no ghosting.</p>
+    <div class="diagram scroll" id="dg-elec"></div>
+    <h3 class="sub">PocketBeagle 2 header map</h3>
+    <div class="scroll">
+    <table class="pins">
+      <thead><tr><th>Pin</th><th>Use</th><th>Pin</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>P1.01</td><td>+5V_SYS in</td><td>P2.01</td><td>I2S BCLK (MCASP0_ACLKX)</td></tr>
+        <tr><td>P1.04</td><td>I2S LRCK (MCASP0_AFSX)</td><td>P2.03</td><td>I2S data to codec (AXR1)</td></tr>
+        <tr><td>P1.06</td><td>backlight PWM (EHRPWM0_A)</td><td>P2.05</td><td>M4F key chain QH (MCU_GPIO0_5)</td></tr>
+        <tr><td>P1.08</td><td>headset detect (GPIO1_14)</td><td>P2.07</td><td>M4F spare, test pad</td></tr>
+        <tr><td>P1.09 / P1.11</td><td>USB1 D− / D+ to the hub</td><td>P2.09 / P2.11</td><td>I2C3 SCL / SDA (IP5306 0x75, ES8388 0x10)</td></tr>
+        <tr><td>P1.12</td><td>I2S data from codec (AXR2)</td><td>P2.10</td><td>panel RESET</td></tr>
+        <tr><td>P1.14, P2.23</td><td>3V3 out (key chain, pull-ups, LEDs)</td><td>P2.25 / 29 / 31</td><td>panel 3-wire SPI</td></tr>
+        <tr><td>P1.26 / P1.28</td><td>M4F key chain CLK / SH-LD</td><td>RGB + sync</td><td>VOUT0, unchanged from v2</td></tr>
+        <tr><td>P1.35</td><td>boot LED (GPIO0_88)</td><td>GND</td><td>all GND pins</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Spare: P1.02, P1.03, P1.10, P1.13, P1.19, P1.21, P1.23, P1.25, P1.27, P1.30, P1.32, P1.34, P2.19, P2.27, P2.36.</p>
+  </div>
+</section>
+
+<section id="board">
+  <div class="wrap">
+    <h2>Main board <span>KiCad 10 (Backplane fork) · 4 layers</span></h2>
+    <div class="stats">
+      <div><b>170 × 126</b><span>mm outline</span></div>
+      <div><b>188</b><span>parts</span></div>
+      <div><b>210</b><span>nets</span></div>
+      <div><b>2,608</b><span>track segments</span></div>
+      <div><b>9.8 m</b><span>of copper track</span></div>
+      <div><b>597</b><span>vias, 0.3 mm drill</span></div>
+    </div>
+    <div class="two">
+      <figure><img src="assets/img/board-top.jpg" alt="KiCad 3D render of the v3 main board from the top: 43 Choc switches, the PocketBeagle sockets at the rear left, 74HC165s, the hub and the rear connectors" width="1400" height="1042" loading="lazy"><figcaption>Top, rendered with <code>kicad-cli pcb render</code>. All assembled parts are on this side.</figcaption></figure>
+      <figure class="copper">
+        <div class="cu" id="cu">
+          <img src="assets/pcb/F.Cu.svg" data-layer="F.Cu" alt="Front copper layer of the v3 main board">
+          <img src="assets/pcb/In1.Cu.svg" data-layer="In1.Cu" alt="Inner layer 1: the ground plane" hidden>
+          <img src="assets/pcb/In2.Cu.svg" data-layer="In2.Cu" alt="Inner layer 2 signal routing" hidden>
+          <img src="assets/pcb/B.Cu.svg" data-layer="B.Cu" alt="Back copper layer" hidden>
+        </div>
+        <div class="row cu-toggles" id="cu-toggles" role="tablist" aria-label="Copper layer">
+          <button class="on f" data-layer="F.Cu" role="tab" aria-selected="true">F.Cu · top</button>
+          <button class="i1" data-layer="In1.Cu" role="tab" aria-selected="false">In1 · GND plane</button>
+          <button class="i2" data-layer="In2.Cu" role="tab" aria-selected="false">In2 · signal</button>
+          <button class="b" data-layer="B.Cu" role="tab" aria-selected="false">B.Cu · bottom</button>
+        </div>
+        <figcaption>Copper, one layer at a time (<code>kicad-cli pcb export svg</code>, drill holes shown). In1 is the ground plane; signals route on the other three, each filled with a ground pour. The wide bus across the top of F.Cu is the display’s parallel RGB.</figcaption>
+      </figure>
+    </div>
+    <table class="kv tight">
+      <tr><th>Rules</th><td>All SMD parts on F.Cu, nothing assembled on the bottom; through-hole only for switches, jacks, USB-A, slide switch, headers and battery connector. Tracks and gaps ≥ 0.127 mm (0.10 minimum), vias 0.3 / 0.45 mm, copper 0.3 mm from the edge. Every BOM line must name an MPN the fab stocks.</td></tr>
+      <tr><th>Height limits</th><td>≤ 1.5 mm between the PocketBeagle’s sockets (the 74HC165s and codec live there); ≤ 10 mm under the display chassis, whose top sits 17.2 mm above the tray floor. Board top at 6.1 mm.</td></tr>
+      <tr><th>Battery zone</th><td>No parts in a 74 × 40 mm keep-out under the LiPo pouch.</td></tr>
+      <tr><th>USB</th><td>Differential pairs routed as pairs, 90 Ω where practical.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="mech">
+  <div class="wrap">
+    <h2>Mechanical <span>FreeCAD 1.1.4 · Blender</span></h2>
+    <p class="lede">Everything is a parametric FreeCAD script, run headless in the VM. <code>zine_concept.py</code> lays out the whole device; the board spec takes its positions from it (case → KiCad: <code>kx = cx + 71.775</code>, <code>ky = 85.475 − cy</code>). The tray and display chassis are separate printable parts with fab files, and a fit check loads the routed board’s STEP back into the mechanics.</p>
+    <div class="parts">
+      <div><h3>Tray</h3><p>175.2 × 131.2 × 12.5 mm · 2 mm wall, 1 mm floor, 3 mm corner radius · board on bosses 4.5 mm up · rear-wall openings for every port · MJF PA12, 36.3 cm³.</p></div>
+      <div><h3>Display chassis</h3><p>127.3 × 47.1 × 15 mm · flush frame for the panel · boxes and clamps the LiPo · four M2 posts on the board, screws from under the tray · MJF PA12, 12.5 cm³.</p></div>
+      <div><h3>PocketBeagle envelope</h3><p>A light model built from BeagleBoard’s own: the real outline, every other part as a conservative height-map box, the sockets, and the USB-C with its mouth and a USB-IF-maximum plug keep-out.</p></div>
+    </div>
+    <div class="gallery">
+      <figure><img src="assets/img/exploded.jpg" alt="Exploded Blender render: tray, main board with switches, PocketBeagle, keycaps, display chassis and panel stacked vertically" width="1600" height="1000" loading="lazy"><figcaption>Exploded (Blender Cycles)</figcaption></figure>
+      <figure><img src="assets/img/rear.jpg" alt="Rear render showing the tray’s rear wall openings, mode keys and the display chassis" width="1600" height="1000" loading="lazy"><figcaption>Rear I/O</figcaption></figure>
+      <figure><img src="assets/img/detail.jpg" alt="Close-up render of the right side of the device" width="1600" height="1000" loading="lazy"><figcaption>Detail</figcaption></figure>
+      <figure><img src="assets/img/hero.jpg" alt="Hero render of the assembled Zine Machine" width="1600" height="1000" loading="lazy"><figcaption>Assembled</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="display">
+  <div class="wrap">
+    <h2>The display, before the hardware exists <span>zinemachine-sim</span></h2>
+    <p class="lede">The panel is 960 × 320 at 16 bits per pixel, which is an unusual shape to design software for. <a href="https://github.com/elevenarms/zinemachine-sim">zinemachine-sim</a> is a Docker dev kit that gives you that exact screen in a browser: an arm64 Debian userland, Xvfb at 960 × 320 × 16, and an <code>LD_PRELOAD</code> shim that turns <code>/dev/fb0</code> into shared memory, so framebuffer apps run unmodified. Save a file and the app rebuilds and restarts in about a second. Every clip below is the display’s own pixels, recorded from the simulator.</p>
+    <div class="sims">
+      <figure class="wide"><video src="assets/sim/chat.mp4" poster="assets/sim/chat.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption><b>chat</b> · a scripted agent-CLI conversation at 60 × 10 characters (Terminus 32 px)</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/wordproc.mp4" poster="assets/sim/wordproc.jpg" muted loop playsinline preload="none"></video><figcaption><b>ZineWrite</b> · types Sonnet 18 while xeyes follows the cursor (SDL2 + X11)</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/exetui.mp4" poster="assets/sim/exetui.jpg" muted loop playsinline preload="none"></video><figcaption><b>exetui</b> · an exe.dev VM manager TUI</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/fbdemo.mp4" poster="assets/sim/fbdemo.jpg" muted loop playsinline preload="none"></video><figcaption><b>fbdemo</b> · demoscene effects on the raw framebuffer (scaled to 640 px)</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/life.mp4" poster="assets/sim/life.jpg" muted loop playsinline preload="none"></video><figcaption><b>life</b> · Game of Life, 240 × 80 cells, coloured by age</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/dash.mp4" poster="assets/sim/dash.jpg" muted loop playsinline preload="none"></video><figcaption><b>dash</b> · a curses dashboard at 16 px, 120 × 20</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/clock.mp4" poster="assets/sim/clock.jpg" muted loop playsinline preload="none"></video><figcaption><b>clock</b> · LED-pixel clock</figcaption></figure>
+      <figure class="wide"><video src="assets/sim/eyechart.mp4" poster="assets/sim/eyechart.jpg" muted loop playsinline preload="none"></video><figcaption><b>eyechart</b> · console font sizes on the real panel; 32 px won</figcaption></figure>
+    </div>
+    <div class="two cols-text">
+      <div>
+        <h3 class="sub">Three kinds of app</h3>
+        <table class="kv tight">
+          <tr><th><code>sim term</code></th><td>xterm in Terminus 32 px: 60 × 10 characters. <code>-s 24</code> gives 80 × 13, <code>-s 16</code> 120 × 20. On the device: <code>setfont ter-v32n</code>.</td></tr>
+          <tr><th><code>sim fb</code></th><td><code>/dev/fb0</code> at 960 × 320, RGB565, with <code>mmap</code>, <code>FBIOGET_*</code> and <code>FBIO_WAITFORVSYNC</code>.</td></tr>
+          <tr><th><code>sim sdl</code></th><td>An X display of exactly 960 × 320, no window manager. On the device SDL2 uses <code>kmsdrm</code>.</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 class="sub">How close to the device?</h3>
+        <p><b>Same:</b> resolution and RGB565 colour (banding shows), arm64 and a Debian userland, fbdev ioctls and <code>mmap</code>, the SDL2 API, the text grid at a given font size.</p>
+        <p><b>Different:</b> X11 instead of KMS/DRM; no real VT, so the console is xterm rather than fbcon; and your CPU, not a 1.4 GHz Cortex-A53, so expect the device to be several times slower.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline">
+  <div class="wrap">
+    <h2>The build pipeline <span>agents → scripts → CAD → git</span></h2>
+    <p class="lede">Nobody drew this board by hand. AI agents work inside a <a href="https://github.com/BackplaneWorks/Backplane">Backplane</a> hub in an arm64 Ubuntu VM on a Mac, each thread in its own git worktree, and they drive KiCad, FreeCAD and Blender from the command line. The design lives as code and text: a spec, a Python description of the circuit, and generator scripts that rebuild the schematic, board and mechanics from it. The mechanics and the board check each other in a loop until the routed board fits.</p>
+    <div class="diagram scroll" id="dg-pipe"></div>
+    <div class="steps">
+      <div><h3>1 · A sandbox that holds the whole toolchain</h3><p><a href="https://github.com/elevenarms/backplane-vm">backplane-vm</a> boots Ubuntu 26.04 arm64 under QEMU with Apple’s Hypervisor.framework (near-native speed) and provisions it: the Backplane hub as a systemd user service, Claude Code, <code>gh</code>, FreeCAD 1.1.4 (pinned AppImage), Blender, and the Backplane KiCad fork, which ships x86_64 only and so is compiled in the VM (a few hours, resumable). Only SSH reaches the Mac; the hub listens on the VM’s loopback, and you reach it through an SSH tunnel with a one-time, ten-minute pairing invite.</p></div>
+      <div><h3>2 · The design as data</h3><p><code>DESIGN_v3.md</code> fixes the outline, every connector position, the pin map, the rules and what “done” means. <code>design.py</code> encodes all 188 parts with value, footprint, MPN, LCSC number and pin-to-net map. <code>gen_fp.py</code> writes custom footprints from the parts’ drawings (and simple STEP bodies via FreeCAD), <code>gen_sch.py</code> draws an A1 schematic with one coloured box per block, and <code>gen_pcb.py</code> places the board. <code>checknet.py</code> proves KiCad’s netlist matches <code>design.py</code> net for net.</p></div>
+      <div><h3>3 · Routing in passes</h3><p><a href="https://github.com/drandyhaas/KiCadRoutingTools">KiCadRoutingTools</a> lays the In1 ground plane, routes the USB pairs as differential pairs, then everything else with rip-up, inside the fab’s limits. <code>finish.sh</code> loops: <code>kicad-cli</code> DRC lists the open connections, <code>connect.py</code> closes them with A* on a 0.1 mm grid across three copper layers, ripping up where it must, and the router re-routes what was ripped. Ground stitching and island repair (<code>gnd_vias</code>, <code>gnd_bridge</code>, <code>gnd_fix</code>) edit the open board in a running KiCad over its IPC API, then refill. <code>plot.py</code> renders each copper layer for review.</p></div>
+      <div><h3>4 · Fit, render, publish</h3><p>The board’s STEP goes back into FreeCAD: <code>fitcheck_board.py</code> places it against the tray, chassis, battery, panel and PocketBeagle envelope; clashes send parts back to the concept. The result exports as one GLB with 893 named parts, which Blender renders on the VM’s CPU, and which this page compresses with gltf-transform (dedup, join by material, meshopt: 15 MB → 1.5 MB) for three.js. The display recordings come from zinemachine-sim in Docker on the Mac, and one plays on the 3D model’s screen above.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="wrap">
+    <h2>Open items <span>before anything is fabricated</span></h2>
+    <ul class="todo">
+      <li>Main board: silkscreen cleanup, fab outputs and README (stage 4 of 4).</li>
+      <li>Charger: plain IP5306 (charge LEDs work with the device off; used now) or IP5306-I2C (Linux can read the charge state).</li>
+      <li>Power budget is tight: about 2.3 A worst case against the IP5306’s 2.1–2.4 A.</li>
+      <li>Check the PJ-327A headset jack’s pin assignment with a plug and a meter.</li>
+      <li>The fab stocks only 75 of the GCT USB1046 USB-A sockets.</li>
+      <li>Choose the battery cell and the slide switch; decide what the three mode keys do.</li>
+      <li>Software: M4F key-scan firmware and an RPMsg-to-uinput service; device-tree overlay for the panel, codec and hub.</li>
+      <li>From v2: confirm the display FPC pinout, contact side and fold length against a real panel.</li>
+    </ul>
+    <h3 class="sub">History</h3>
+    <table class="kv tight">
+      <tr><th>v2</th><td>bancouver40 with an ATmega32U4 running QMK/Vial, hot-swap sockets and a translucent SolidCraft case, the PocketBeagle 2 as its USB host. <a href="/zinemachine0/">The v2 interactive page</a> is still up.</td></tr>
+      <tr><th>v3</th><td>This design: the keyboard controller folded into the PocketBeagle’s M4F, battery, hub, audio, and an open printed tray.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="credits">
+  <div class="wrap">
+    <h2>Credits &amp; licences</h2>
+    <p class="credits"><b>bancouver40</b>: keyboard design, PCB, case and firmware by ChrisChrisLoLo (sporewoh), GPL-3.0; zinemachine0 is a fork of it. <b>PocketBeagle 2 / Industrial</b>: hardware, schematic, drawings and 3D model by BeagleBoard.org, model CC BY-SA 4.0. <b>KiCad</b> libraries (CC BY-SA 4.0 with exception), the <b>Backplane</b> KiCad fork, <b>KiCadRoutingTools</b>, <b>Freerouting</b> (v2), <b>FreeCAD</b>, <b>Blender</b>, <b>SolidCraft</b> (v2 case), <b>three.js</b> (MIT), <b>gltf-transform</b> and <b>meshoptimizer</b> (MIT), <b>QMK</b>/<b>Vial</b>. Design work assisted by Claude Code. zinemachine0 and zinemachine-sim are GPL-3.0; backplane-vm is MIT. Renders and the 3D model on this page come from zinemachine0 at commit <code>8fed12c</code>.</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap"><a href="/">← Dave Rauchwerk</a> · <a href="https://github.com/elevenarms/zinemachine0">source</a></div></footer>
+
+<script type="module">
+import { createViewer, LAYERS } from './viewer.js';
+import { drawDiagram } from './diagram.js';
+import { HOTSPOTS, ELECTRICAL, PIPELINE } from './zm-data.js';
+
+drawDiagram(document.getElementById('dg-elec'), ELECTRICAL);
+drawDiagram(document.getElementById('dg-pipe'), PIPELINE);
+
+// copper layer picker (one at a time: every layer carries a ground pour)
+document.querySelectorAll('#cu-toggles button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('#cu-toggles button').forEach((x) => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+  document.querySelectorAll('#cu img').forEach((im) => (im.hidden = im.dataset.layer !== b.dataset.layer));
+}));
+
+// sim videos: play only when on screen (saves battery; Safari honours muted+playsinline autoplay)
+const vio = new IntersectionObserver((es) => es.forEach((e) => {
+  const v = e.target; if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
+}), { threshold: 0.25 });
+document.querySelectorAll('.sims video').forEach((v) => { v.muted = true; vio.observe(v); });
+
+// 3D
+const stage = document.getElementById('stage');
+const card = document.getElementById('card');
+try {
+  const v = await createViewer(document.getElementById('viewport'), {
+    background: null, view: 'hero', screenVideo: 'assets/sim/chat.mp4', groundOpacity: 0.22,
+    onProgress: (p) => (document.getElementById('loadbar').style.width = (p * 100).toFixed(0) + '%'),
+  });
+  document.getElementById('loading').remove();
+  window.zm = v;
+
+  const layersEl = document.getElementById('layers');
+  for (const L of LAYERS) {
+    const b = document.createElement('button'); b.textContent = L.label; b.className = 'on'; b.setAttribute('aria-pressed', 'true');
+    b.addEventListener('click', () => { const on = !b.classList.contains('on'); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); v.setLayerVisible(L.id, on); });
+    b.addEventListener('dblclick', () => { v.isolate(L.id); layersEl.querySelectorAll('button').forEach((x) => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); }); });
+    layersEl.appendChild(b);
+  }
+  const ex = document.getElementById('explode');
+  ex.addEventListener('input', () => v.setExplode(+ex.value));
+  document.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => {
+    if (b.dataset.view === 'hero' && +ex.value > 0.5) v.setView('exploded'); else v.setView(b.dataset.view);
+  }));
+  const tog = (id, f) => { const b = document.getElementById(id); b.addEventListener('click', () => { const on = !b.classList.contains('on'); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); f(on); }); };
+  tog('labels', (on) => { v.showHotspots(on); if (!on) card.hidden = true; });
+  tog('spin', (on) => v.setAutoRotate(on));
+
+  const hsHost = document.getElementById('hotspots');
+  HOTSPOTS.forEach((h, i) => {
+    const el = document.createElement('button'); el.className = 'hs'; el.innerHTML = `<i>${i + 1}</i><span>${h.title}</span>`;
+    el.setAttribute('aria-label', h.title);
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      card.querySelector('h3').textContent = h.title; card.querySelector('p').textContent = h.body; card.hidden = false;
+      hsHost.querySelectorAll('.hs').forEach((x) => x.classList.toggle('sel', x === el));
+    });
+    hsHost.appendChild(el); v.addHotspot({ ...h, el });
+  });
+  document.getElementById('cardx').addEventListener('click', () => { card.hidden = true; hsHost.querySelectorAll('.hs').forEach((x) => x.classList.remove('sel')); });
+} catch (err) {
+  console.error(err);
+  stage.classList.add('fallback');
+  stage.innerHTML = '<img src="assets/img/exploded.jpg" alt="Exploded render of the Zine Machine v3"><p class="err">3D needs WebGL; showing a render instead.</p>';
+  document.getElementById('controls').hidden = true;
+}
+</script>
+</body>
+</html>
