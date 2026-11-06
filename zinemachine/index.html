@@ -55,7 +55,7 @@
 <section id="model">
   <div class="wrap">
     <h2>The v3 assembly, in 3D <span>zinemachine0 @ 8fed12c</span></h2>
-    <p class="lede">The same model the Blender renders come from: the routed main board exported from KiCad, with the FreeCAD tray, display chassis, battery and PocketBeagle envelope fitted around it, and keycaps carrying the stock QMK layers. Drag to orbit, pinch or scroll to zoom, and tap a dot for detail.</p>
+    <p class="lede">The same model the Blender renders come from: the routed main board exported from KiCad, with the FreeCAD tray, display chassis, battery and PocketBeagle envelope fitted around it, and keycaps carrying the stock QMK layers. Drag to orbit, pinch or scroll to zoom; turn on Labels and tap a dot for detail.</p>
   </div>
   <div class="wrap wide">
     <div class="stage" id="stage">
@@ -70,7 +70,7 @@
       <div class="row" id="layers" aria-label="Layers"></div>
       <div class="row" id="views" aria-label="Views">
         <button data-view="hero">Hero</button><button data-view="top">Top</button><button data-view="rear">Rear I/O</button><button data-view="side">Side</button><button data-view="detail">Detail</button>
-        <button id="labels" class="on" aria-pressed="true">Labels</button><button id="spin" aria-pressed="false">Spin</button>
+        <button id="labels" aria-pressed="false">Labels</button><button id="spin" aria-pressed="false">Spin</button>
       </div>
     </div>
   </div>
@@ -314,6 +314,7 @@ try {
     });
     hsHost.appendChild(el); v.addHotspot({ ...h, el });
   });
+  v.showHotspots(false);                       // labels start hidden; the Labels button turns them on
   document.getElementById('cardx').addEventListener('click', () => { card.hidden = true; hsHost.querySelectorAll('.hs').forEach((x) => x.classList.remove('sel')); });
 } catch (err) {
   console.error(err);
