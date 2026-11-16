@@ -24,9 +24,6 @@
     <a class="brand" href="/" aria-label="Rauchwerk Research, home"><svg viewBox="0 0 410 410" aria-hidden="true"><rect width="410" height="410" fill="#0a0a0a" stroke="#fff" stroke-width="14"/><rect x="30" y="32" width="106" height="96" fill="#fff"/><rect x="30" y="155" width="106" height="100" fill="#fff"/><rect x="30" y="285" width="106" height="100" fill="#fff"/><rect x="272" y="32" width="106" height="96" fill="#fff"/></svg><span>Rauchwerk<br>Research</span></a>
     <span class="kicker">Open research and concepts · Dave Rauchwerk</span>
     <h1 class="sr-only">Dave Rauchwerk · Rauchwerk Research</h1>
-    <p class="lead">Rauchwerk Research is my personal open research and concept work. Each project here is self-directed and published in the open: the code, the data, and a field report that says what works and what does not yet.</p>
-    <p class="intro">The thread running through it is checking AI against something it cannot argue with: a physics simulation, a proof checker, a fabricated circuit board, a health record that can be reset and graded. This year that meant voice agents for patients managing several long-term conditions, routing benchmarks for high-frequency boards, a SPARCstation that boots in your browser, laser-optics benches designed by agents and verified by a tracer, and seL4’s proofs ported to Lean. Before that, I co-founded Next Thing Co., maker of C.H.I.P., the $9 computer.</p>
-    <p class="motto">Use the product. Show what works. Prototype what’s next.</p>
     <p class="links">
       <a href="https://github.com/elevenarms">GitHub</a>
       <a href="https://rauchwerkresearch.substack.com/">Substack</a>
@@ -35,15 +32,6 @@
     </p>
   </div>
 </header>
-
-<div class="facts">
-  <div class="wrap">
-    <div><b>What this is</b><span>Personal, self-directed research and concepts</span></div>
-    <div><b>How it is shared</b><span>Open source, with data and a field report</span></div>
-    <div><b>Method</b><span>Every claim backed by a number, a screenshot or a check</span></div>
-    <div><b>Status</b><span>Prototypes and concepts, not products</span></div>
-  </div>
-</div>
 
 <nav class="toc" aria-label="Sections">
   <div class="wrap">
@@ -59,15 +47,13 @@
   <section id="work">
     <div class="wrap">
       <h2>01 · Work <span>2026</span></h2>
-      <p class="shead">Agents checked against something they cannot argue with.</p>
       <div class="grid">
 
-        <article class="p feature">
+        <article class="p">
           <figure><img src="/assets/img/health-agents.jpg" alt="A frame from the demonstration video: a phone app in which Maren, the nurse persona, is speaking, with a waveform following her voice, beside a black panel headed ‘A question about results goes to Maren, the nurse’" width="1400" height="875" loading="lazy"></figure>
           <div class="meta"><span class="new">2026</span><span>Agents · Voice · Health · Field report</span></div>
           <h3>Designing consumer health agents</h3>
-          <p>A voice agent that answers from a patient’s health record and acts on it: refills, bookings, messages to the care team, home readings. It is tested against a digital twin of a health system instead of a real one: four synthetic patients stored as FHIR records, with a simulated clinic that answers back. One fast realtime voice acts; two slower colleague personas, a pharmacist and a nurse, take the questions that need care, each in their own voice. Anything that changes the record waits for the patient’s yes, enforced in code.</p>
-          <p>The evaluation grades the record, not the conversation: 105 graded conversations, 30 of 35 scenarios held every time, no write went through without the patient’s agreement, and the failures that remain are traced to a stage. Ten user stories, a 22-page field report and a three-minute demo with live speech both ways.</p>
+          <p>A voice agent that answers from a patient’s health record and acts on it: refills, bookings, messages to the care team. It is tested against a digital twin of a health system, with four synthetic FHIR patients and a simulated clinic. A pharmacist and a nurse persona take the questions that need care, and nothing changes the record without the patient’s yes. Across 105 graded conversations, 30 of 35 scenarios held every time. Includes a 22-page field report and a three-minute demo.</p>
           <p class="go"><a href="https://elevenarms.github.io/health-hub-twin/">Field report</a><a href="https://elevenarms.github.io/health-hub-twin/media/demo.mp4">Demo video</a><a href="https://github.com/elevenarms/health-hub-twin">Source</a></p>
         </article>
 
@@ -156,7 +142,6 @@ doas rcctl check ntpd
   <section id="earlier">
     <div class="wrap">
       <h2>02 · Prototypes <span>2020–2025</span></h2>
-      <p class="shead">Built fast to find out whether the idea holds.</p>
       <div class="grid">
 
         <article class="p">
@@ -188,7 +173,6 @@ doas rcctl check ntpd
   <section id="ntc">
     <div class="wrap">
       <h2>03 · Next Thing Co. <span>2013–2018</span></h2>
-      <p class="shead">Some of the cheapest Linux computers ever sold.</p>
       <p class="lede">Co-founder and CEO, with Gustavo Huber and Thomas Deckert, in Oakland. We started with a GIF camera and ended up making some of the cheapest Linux computers ever sold.</p>
       <div class="grid">
 
