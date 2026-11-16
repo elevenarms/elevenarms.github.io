@@ -4,40 +4,52 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#ffffff">
-<title>Dave Rauchwerk</title>
-<meta name="description" content="Dave Rauchwerk, technologist: emulators, formal proofs, AI agents and hardware. Projects, videos, press and writing.">
-<meta property="og:title" content="Dave Rauchwerk, technologist">
-<meta property="og:description" content="Emulators, formal proofs, AI agents and hardware. Projects, videos, press and writing.">
+<meta name="theme-color" content="#000000">
+<title>Dave Rauchwerk · Rauchwerk Research</title>
+<meta name="description" content="Rauchwerk Research: Dave Rauchwerk’s personal open research and concept work. AI agents checked against something they cannot argue with, emulators, formal proofs and hardware, each published with its code and a field report.">
+<meta property="og:title" content="Dave Rauchwerk · Rauchwerk Research">
+<meta property="og:description" content="Personal open research and concept work: AI agents, emulators, formal proofs and hardware, each published with its code and a field report.">
 <meta property="og:image" content="https://elevenarms.github.io/assets/img/beamteam.jpg">
 <meta property="og:url" content="https://elevenarms.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/portfolio.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 410 410'%3E%3Crect width='410' height='410' fill='%230a0a0a'/%3E%3Crect x='30' y='32' width='106' height='96' fill='%23fff'/%3E%3Crect x='30' y='155' width='106' height='100' fill='%23fff'/%3E%3Crect x='30' y='285' width='106' height='100' fill='%23fff'/%3E%3Crect x='272' y='32' width='106' height='96' fill='%23fff'/%3E%3C/svg%3E">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <h1>Dave Rauchwerk</h1>
-    <p class="role">Technologist.</p>
-    <p class="intro">I build across the whole stack, from emulators and formal proofs to AI agents and the hardware they run on. My recent work checks the AI against something it can’t argue with: a physics simulation, a proof checker, a measured test.</p>
-    <p class="intro">This year: a SPARCstation that boots in your browser, agents that design laser-optics benches a physics tracer has verified, and a port of seL4’s formal proofs to Lean. Before that, I co-founded Next Thing Co., maker of C.H.I.P., the $9 computer.</p>
+    <a class="brand" href="/" aria-label="Rauchwerk Research, home"><svg viewBox="0 0 410 410" aria-hidden="true"><rect width="410" height="410" fill="#0a0a0a" stroke="#fff" stroke-width="14"/><rect x="30" y="32" width="106" height="96" fill="#fff"/><rect x="30" y="155" width="106" height="100" fill="#fff"/><rect x="30" y="285" width="106" height="100" fill="#fff"/><rect x="272" y="32" width="106" height="96" fill="#fff"/></svg><span>Rauchwerk<br>Research</span></a>
+    <span class="kicker">Open research and concepts · Dave Rauchwerk</span>
+    <h1 class="sr-only">Dave Rauchwerk · Rauchwerk Research</h1>
+    <p class="lead">Rauchwerk Research is my personal open research and concept work. Each project here is self-directed and published in the open: the code, the data, and a field report that says what works and what does not yet.</p>
+    <p class="intro">The thread running through it is checking AI against something it cannot argue with: a physics simulation, a proof checker, a fabricated circuit board, a health record that can be reset and graded. This year that meant voice agents for patients managing several long-term conditions, routing benchmarks for high-frequency boards, a SPARCstation that boots in your browser, laser-optics benches designed by agents and verified by a tracer, and seL4’s proofs ported to Lean. Before that, I co-founded Next Thing Co., maker of C.H.I.P., the $9 computer.</p>
+    <p class="motto">Use the product. Show what works. Prototype what’s next.</p>
     <p class="links">
       <a href="https://github.com/elevenarms">GitHub</a>
+      <a href="https://rauchwerkresearch.substack.com/">Substack</a>
       <a href="https://x.com/_elevenarms">X</a>
       <a href="https://www.linkedin.com/in/dave-rauchwerk-0ba82822/">LinkedIn</a>
-      <a href="https://rauchwerkresearch.substack.com/">Substack</a>
     </p>
   </div>
 </header>
 
+<div class="facts">
+  <div class="wrap">
+    <div><b>What this is</b><span>Personal, self-directed research and concepts</span></div>
+    <div><b>How it is shared</b><span>Open source, with data and a field report</span></div>
+    <div><b>Method</b><span>Every claim backed by a number, a screenshot or a check</span></div>
+    <div><b>Status</b><span>Prototypes and concepts, not products</span></div>
+  </div>
+</div>
+
 <nav class="toc" aria-label="Sections">
   <div class="wrap">
     <a href="#work">Work</a>
+    <a href="#earlier">Prototypes</a>
     <a href="#ntc">Next Thing Co.</a>
-    <a href="#videos">Videos</a>
     <a href="#press">Press</a>
     <a href="#writing">Writing</a>
   </div>
@@ -46,8 +58,18 @@
 <main>
   <section id="work">
     <div class="wrap">
-      <h2>Work <span>2026</span></h2>
+      <h2>01 · Work <span>2026</span></h2>
+      <p class="shead">Agents checked against something they cannot argue with.</p>
       <div class="grid">
+
+        <article class="p feature">
+          <figure><img src="/assets/img/health-agents.jpg" alt="A frame from the demonstration video: a phone app in which Maren, the nurse persona, is speaking, with a waveform following her voice, beside a black panel headed ‘A question about results goes to Maren, the nurse’" width="1400" height="875" loading="lazy"></figure>
+          <div class="meta"><span class="new">2026</span><span>Agents · Voice · Health · Field report</span></div>
+          <h3>Designing consumer health agents</h3>
+          <p>A voice agent that answers from a patient’s health record and acts on it: refills, bookings, messages to the care team, home readings. It is tested against a digital twin of a health system instead of a real one: four synthetic patients stored as FHIR records, with a simulated clinic that answers back. One fast realtime voice acts; two slower colleague personas, a pharmacist and a nurse, take the questions that need care, each in their own voice. Anything that changes the record waits for the patient’s yes, enforced in code.</p>
+          <p>The evaluation grades the record, not the conversation: 105 graded conversations, 30 of 35 scenarios held every time, no write went through without the patient’s agreement, and the failures that remain are traced to a stage. Ten user stories, a 22-page field report and a three-minute demo with live speech both ways.</p>
+          <p class="go"><a href="https://elevenarms.github.io/health-hub-twin/">Field report</a><a href="https://elevenarms.github.io/health-hub-twin/media/demo.mp4">Demo video</a><a href="https://github.com/elevenarms/health-hub-twin">Source</a></p>
+        </article>
 
         <article class="p">
           <figure><img src="/assets/img/pcb-gold-eval.jpg" alt="Exploded 3D view of Antmicro’s Jetson Orin baseboard: copper, solder mask and silkscreen layers pulled apart above the board" width="1400" height="745" loading="lazy"></figure>
@@ -133,7 +155,8 @@ doas rcctl check ntpd
 
   <section id="earlier">
     <div class="wrap">
-      <h2>Prototypes <span>2020–2025</span></h2>
+      <h2>02 · Prototypes <span>2020–2025</span></h2>
+      <p class="shead">Built fast to find out whether the idea holds.</p>
       <div class="grid">
 
         <article class="p">
@@ -164,7 +187,8 @@ doas rcctl check ntpd
 
   <section id="ntc">
     <div class="wrap">
-      <h2>Next Thing Co. <span>2013–2018</span></h2>
+      <h2>03 · Next Thing Co. <span>2013–2018</span></h2>
+      <p class="shead">Some of the cheapest Linux computers ever sold.</p>
       <p class="lede">Co-founder and CEO, with Gustavo Huber and Thomas Deckert, in Oakland. We started with a GIF camera and ended up making some of the cheapest Linux computers ever sold.</p>
       <div class="grid">
 
@@ -208,23 +232,9 @@ doas rcctl check ntpd
     </div>
   </section>
 
-  <section id="videos">
-    <div class="wrap">
-      <h2>Videos <span>2015–2016</span></h2>
-      <div class="vids">
-        <a class="vid" href="https://www.youtube.com/watch?v=KqNfpL8ML_w"><img src="https://i.ytimg.com/vi/KqNfpL8ML_w/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Stanford EE380 · Nov 2015</span><b>$9 Computer Architecture: The Chips That Make C.H.I.P., C.H.I.P.</b></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=ih9SOZcpk5Q"><img src="https://i.ytimg.com/vi/ih9SOZcpk5Q/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>O’Reilly OSCON · Jul 2015</span><b>Next Thing Co.’s Dave Rauchwerk Built a $9 Computer</b></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=V6OIQc8y6gQ"><img src="https://i.ytimg.com/vi/V6OIQc8y6gQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Kickstarter · Jul 2015</span><b>Creator Hangouts: Next Thing Co’s Dave Rauchwerk</b></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=7F0OwKy1jjI"><img src="https://i.ytimg.com/vi/7F0OwKy1jjI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Make: · Jun 2015</span><b>C.H.I.P.: The World’s First Nine Dollar Computer</b></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=hXDizTasY6A"><img src="https://i.ytimg.com/vi/hXDizTasY6A/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>Adam Savage’s Tested · May 2016</span><b>Pocket CHIP: $49 Indie Game Console</b></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=9CSpx2Ozamk"><img src="https://i.ytimg.com/vi/9CSpx2Ozamk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span>TWiT · Jul 2016</span><b>PocketCHIP: The $50 Portable Linux Computer</b></a>
-      </div>
-    </div>
-  </section>
-
   <section id="press">
     <div class="wrap">
-      <h2>Press <span>2014–2018</span></h2>
+      <h2>04 · Press <span>2014–2018</span></h2>
       <ul class="rows">
         <li><span class="y">2018</span><span class="o">Hackaday</span><a class="t" href="https://hackaday.com/2018/07/20/the-c-h-i-p-returns-maybe/">The C.H.I.P. returns, maybe</a></li>
         <li><span class="y">2017</span><span class="o">Engadget</span><a class="t" href="https://www.engadget.com/2017-01-24-next-thing-co-chip-pro-gr8-interview.html">How an animated-GIF camera morphed into a nascent chip empire</a></li>
@@ -251,7 +261,7 @@ doas rcctl check ntpd
 
   <section id="writing">
     <div class="wrap">
-      <h2>Writing</h2>
+      <h2>05 · Writing</h2>
       <ul class="rows">
         <li><span class="y">2026</span><span class="o">Blog</span><a class="t" href="/posts/agentic-watchmaking/">An Agent at the Watchmaker’s Bench</a></li>
         <li><span class="y">2026</span><span class="o">Blog</span><a class="t" href="/posts/sel4-meets-lean/">seL4, Meet Lean</a></li>
@@ -263,7 +273,8 @@ doas rcctl check ntpd
 
 <footer>
   <div class="wrap">
-    <span>Dave Rauchwerk · technologist</span>
+    <span class="bug"><svg viewBox="0 0 410 410" aria-hidden="true"><rect width="410" height="410" fill="#0a0a0a" /><rect x="30" y="32" width="106" height="96" fill="#fff"/><rect x="30" y="155" width="106" height="100" fill="#fff"/><rect x="30" y="285" width="106" height="100" fill="#fff"/><rect x="272" y="32" width="106" height="96" fill="#fff"/></svg>Rauchwerk Research</span>
+    <span>Dave Rauchwerk · open research and concepts</span>
     <span><a href="https://github.com/elevenarms">github.com/elevenarms</a> · <a href="https://x.com/_elevenarms">@_elevenarms</a></span>
   </div>
 </footer>
